@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { FaTimes, FaMinus, FaExpandAlt, FaSync, FaChartLine, FaTrophy, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 import { useCurrency } from '@/hooks/useCurrency';
 import styles from './LiveStats.module.css';
@@ -11,6 +11,10 @@ export default function LiveStats() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [activeTab, setActiveTab] = useState('stats'); // 'stats' | 'graph'
+
+  // Dragging controls and position state
+  const dragControls = useDragControls();
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   // Session stats state
   const [sessionStats, setSessionStats] = useState({
@@ -42,6 +46,15 @@ export default function LiveStats() {
         }
       }
 
+      const savedPos = localStorage.getItem('btcfinder_livestats_position');
+      if (savedPos) {
+        try {
+          setPosition(JSON.parse(savedPos));
+        } catch (e) {
+          console.error('Failed to parse saved position:', e);
+        }
+      }
+
       // Sync toggle state events from Navbar
       const handleToggle = (e) => {
         setIsOpen(e.detail);
@@ -67,11 +80,10 @@ export default function LiveStats() {
     return `${sign}${sym}${formatted}`;
   }, [currency, prices]);
 
-  // Handle incoming wagers from player
+  // Handle incoming wagers from player using central addGameResult events
   useEffect(() => {
     const handleNewBet = (e) => {
-      const bet = e.detail;
-      if (!bet.isPlayer) return; // Only track player wagers
+      const bet = e.detail; // gameResult object from storage.js
 
       setSessionStats((prev) => {
         const netProfit = bet.payout - bet.bet;
@@ -93,8 +105,8 @@ export default function LiveStats() {
       });
     };
 
-    window.addEventListener('new-bet-slip', handleNewBet);
-    return () => window.removeEventListener('new-bet-slip', handleNewBet);
+    window.addEventListener('new-game-result', handleNewBet);
+    return () => window.removeEventListener('new-game-result', handleNewBet);
   }, []);
 
   // Draw chart inside canvas
@@ -229,7 +241,6 @@ export default function LiveStats() {
   // Re-draw when tab becomes graph or stats updates
   useEffect(() => {
     if (activeTab === 'graph') {
-      // Small timeout to let DOM render ref container
       const timer = setTimeout(drawChart, 20);
       window.addEventListener('resize', drawChart);
       return () => {
@@ -267,6 +278,22 @@ export default function LiveStats() {
     }
   };
 
+  // Dragging event handlers
+  const handleDragEnd = (event, info) => {
+    const nextPos = {
+      x: position.x + info.offset.x,
+      y: position.y + info.offset.y
+    };
+    setPosition(nextPos);
+    localStorage.setItem('btcfinder_livestats_position', JSON.stringify(nextPos));
+  };
+
+  const handleHeaderDoubleClick = () => {
+    const resetPos = { x: 0, y: 0 };
+    setPosition(resetPos);
+    localStorage.setItem('btcfinder_livestats_position', JSON.stringify(resetPos));
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -294,19 +321,30 @@ export default function LiveStats() {
           /* Full expanded live stats card overlay */
           <motion.div
             key="card"
+            drag
+            dragControls={dragControls}
+            dragListener={false}
+            dragMomentum={false}
+            onDragEnd={handleDragEnd}
             className={styles.card}
+            style={{ x: position.x, y: position.y }}
             initial={{ y: 50, scale: 0.95, opacity: 0 }}
             animate={{ y: 0, scale: 1, opacity: 1 }}
             exit={{ y: 50, scale: 0.95, opacity: 0 }}
             transition={{ type: 'spring', damping: 24, stiffness: 220 }}
           >
-            {/* Header */}
-            <div className={styles.header}>
+            {/* Header / Grab Handle */}
+            <div
+              className={styles.header}
+              onPointerDown={(e) => dragControls.start(e)}
+              onDoubleClick={handleHeaderDoubleClick}
+              title="Drag header to move | Double-click to reset position"
+            >
               <div className={styles.headerTitle}>
                 <FaChartLine className={styles.chartIcon} />
                 <span>Live Stats</span>
               </div>
-              <div className={styles.actions}>
+              <div className={styles.actions} onPointerDown={(e) => e.stopPropagation()}>
                 <button className={styles.actionBtn} onClick={handleMinimizeToggle} title="Minimize Window">
                   <FaMinus />
                 </button>

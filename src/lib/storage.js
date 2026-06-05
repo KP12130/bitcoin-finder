@@ -63,6 +63,11 @@ export function addGameResult(result) {
     ...result,
     timestamp,
   };
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('new-game-result', { detail: newResult }));
+  }
+
   history.unshift(newResult);
   // Keep only last N games
   if (history.length > GAME_CONFIG.MAX_HISTORY) {
