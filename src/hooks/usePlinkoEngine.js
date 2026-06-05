@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { PLINKO_CONFIG } from '@/lib/constants';
-import { updateStats } from '@/lib/storage';
+import { updateStats, addGameResult } from '@/lib/storage';
 
 export function usePlinkoEngine(balance, subtractBalance, addBalance, onFinished) {
   const [betAmount, setBetAmount] = useState(100);
@@ -39,12 +39,20 @@ export function usePlinkoEngine(balance, subtractBalance, addBalance, onFinished
         addBalance(payout);
       }
 
-      // Update global casino statistics
-      updateStats({
-        game: 'plinko',
+      const logData = {
+        won: payout > 0,
         bet: betAmount,
-        won: payout,
-      });
+        payout: payout,
+        guessCount: rows,
+        secretNumber: path.join(''),
+        matchedGuess: bucketIndex,
+        multiplier: multiplier.toFixed(2),
+        gameType: 'plinko',
+      };
+
+      // Update global casino statistics and history
+      addGameResult(logData);
+      updateStats(logData);
 
       setActiveBalls((prev) => Math.max(0, prev - 1));
       if (onFinished) {

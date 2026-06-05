@@ -122,7 +122,28 @@ export function getDefaultStats() {
 }
 
 export function getStats() {
-  return safeGet(STORAGE_KEYS.STATS, getDefaultStats());
+  const stats = safeGet(STORAGE_KEYS.STATS, getDefaultStats());
+  let repaired = false;
+  const defaults = getDefaultStats();
+  for (const key in stats) {
+    if (typeof stats[key] === 'number' && isNaN(stats[key])) {
+      stats[key] = defaults[key] ?? 0;
+      repaired = true;
+    }
+  }
+  if (Array.isArray(stats.profitHistory)) {
+    const len = stats.profitHistory.length;
+    stats.profitHistory = stats.profitHistory.filter(
+      (item) => item && !isNaN(Number(item.profit)) && !isNaN(Number(item.game))
+    );
+    if (stats.profitHistory.length !== len) {
+      repaired = true;
+    }
+  }
+  if (repaired) {
+    setStats(stats);
+  }
+  return stats;
 }
 
 export function setStats(stats) {

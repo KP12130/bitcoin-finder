@@ -29,6 +29,13 @@
   align-items: center;
   justify-content: space-between;
   background: rgba(0, 0, 0, 0.15);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.header:active {
+  cursor: grabbing;
 }
 
 .headerTitle {
@@ -260,10 +267,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
   position: relative;
   outline: none;
   animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.bubble:active {
+  cursor: grabbing;
 }
 
 .bubbleIcon {

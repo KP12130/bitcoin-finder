@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useDragControls } from 'framer-motion';
-import { FaTimes, FaMinus, FaExpandAlt, FaSync, FaChartLine, FaTrophy, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
+import { motion, AnimatePresence, useDragControls, useMotionValue } from 'framer-motion';
+import { FaTimes, FaMinus, FaSync, FaChartLine, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 import { useCurrency } from '@/hooks/useCurrency';
 import styles from './LiveStats.module.css';
 
@@ -12,9 +12,10 @@ export default function LiveStats() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [activeTab, setActiveTab] = useState('stats'); // 'stats' | 'graph'
 
-  // Dragging controls and position state
+  // Dragging controls and position motion values
   const dragControls = useDragControls();
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
   // Session stats state
   const [sessionStats, setSessionStats] = useState({
@@ -40,7 +41,17 @@ export default function LiveStats() {
       const savedData = localStorage.getItem('btcfinder_live_stats');
       if (savedData) {
         try {
-          setSessionStats(JSON.parse(savedData));
+          const parsed = JSON.parse(savedData);
+          const sanitized = {
+            profit: isNaN(Number(parsed.profit)) ? 0 : Number(parsed.profit),
+            wagered: isNaN(Number(parsed.wagered)) ? 0 : Number(parsed.wagered),
+            bets: isNaN(Number(parsed.bets)) ? 0 : Number(parsed.bets),
+            wins: isNaN(Number(parsed.wins)) ? 0 : Number(parsed.wins),
+            losses: isNaN(Number(parsed.losses)) ? 0 : Number(parsed.losses),
+            history: Array.isArray(parsed.history) ? parsed.history.filter(v => !isNaN(Number(v))) : [0]
+          };
+          setSessionStats(sanitized);
+          localStorage.setItem('btcfinder_live_stats', JSON.stringify(sanitized));
         } catch (e) {
           console.error('Failed to parse saved live stats:', e);
         }
@@ -49,7 +60,37 @@ export default function LiveStats() {
       const savedPos = localStorage.getItem('btcfinder_livestats_position');
       if (savedPos) {
         try {
-          setPosition(JSON.parse(savedPos));
+          const parsed = JSON.parse(savedPos);
+          let posX = Number(parsed.x || 0);
+          let posY = Number(parsed.y || 0);
+
+          // Viewport safety clamp: ensure the widget is visible on screen
+          const screenW = window.innerWidth;
+          const screenH = window.innerHeight;
+
+          const baseLeft = 32;   // 2rem
+          const baseBottom = 32; // 2rem
+          const widgetWidth = 320;
+          const widgetHeight = 350;
+
+          const currentLeft = baseLeft + posX;
+          const currentTop = screenH - baseBottom - widgetHeight + posY;
+
+          if (currentLeft + 100 > screenW) {
+            posX = screenW - baseLeft - 100;
+          }
+          if (currentLeft < -100) {
+            posX = -baseLeft - 100;
+          }
+          if (currentTop + 50 > screenH) {
+            posY = screenH - (screenH - baseBottom - widgetHeight) - 50;
+          }
+          if (currentTop < 0) {
+            posY = -(screenH - baseBottom - widgetHeight);
+          }
+
+          x.set(posX);
+          y.set(posY);
         } catch (e) {
           console.error('Failed to parse saved position:', e);
         }
@@ -62,7 +103,7 @@ export default function LiveStats() {
       window.addEventListener('livestats-toggle-state', handleToggle);
       return () => window.removeEventListener('livestats-toggle-state', handleToggle);
     }
-  }, []);
+  }, [x, y]);
 
   // Format currency dynamically based on active rates
   const formatValue = useCallback((amount) => {
@@ -84,19 +125,27 @@ export default function LiveStats() {
   useEffect(() => {
     const handleNewBet = (e) => {
       const bet = e.detail; // gameResult object from storage.js
+      if (!bet) return;
 
       setSessionStats((prev) => {
-        const netProfit = bet.payout - bet.bet;
-        const newProfit = Number((prev.profit + netProfit).toFixed(4));
-        const newWagered = Number((prev.wagered + bet.bet).toFixed(4));
-        const newHistory = [...prev.history, newProfit].slice(-100);
+        const prevProfit = Number(prev?.profit ?? 0);
+        const prevWagered = Number(prev?.wagered ?? 0);
+        const prevBets = Number(prev?.bets ?? 0);
+        const prevWins = Number(prev?.wins ?? 0);
+        const prevLosses = Number(prev?.losses ?? 0);
+        const prevHistory = Array.isArray(prev?.history) ? prev.history : [0];
+
+        const netProfit = Number(bet.payout ?? 0) - Number(bet.bet ?? 0);
+        const newProfit = Number((prevProfit + netProfit).toFixed(4));
+        const newWagered = Number((prevWagered + Number(bet.bet ?? 0)).toFixed(4));
+        const newHistory = [...prevHistory, newProfit].slice(-100);
 
         const updated = {
           profit: newProfit,
           wagered: newWagered,
-          bets: prev.bets + 1,
-          wins: prev.wins + (bet.won ? 1 : 0),
-          losses: prev.losses + (bet.won ? 0 : 1),
+          bets: prevBets + 1,
+          wins: prevWins + (bet.won ? 1 : 0),
+          losses: prevLosses + (bet.won ? 0 : 1),
           history: newHistory
         };
 
@@ -279,19 +328,16 @@ export default function LiveStats() {
   };
 
   // Dragging event handlers
-  const handleDragEnd = (event, info) => {
-    const nextPos = {
-      x: position.x + info.offset.x,
-      y: position.y + info.offset.y
-    };
-    setPosition(nextPos);
-    localStorage.setItem('btcfinder_livestats_position', JSON.stringify(nextPos));
+  const handleDragEnd = () => {
+    const currentX = x.get();
+    const currentY = y.get();
+    localStorage.setItem('btcfinder_livestats_position', JSON.stringify({ x: currentX, y: currentY }));
   };
 
-  const handleHeaderDoubleClick = () => {
-    const resetPos = { x: 0, y: 0 };
-    setPosition(resetPos);
-    localStorage.setItem('btcfinder_livestats_position', JSON.stringify(resetPos));
+  const handleResetPosition = () => {
+    x.set(0);
+    y.set(0);
+    localStorage.setItem('btcfinder_livestats_position', JSON.stringify({ x: 0, y: 0 }));
   };
 
   if (!isOpen) return null;
@@ -301,22 +347,27 @@ export default function LiveStats() {
       <AnimatePresence mode="wait">
         {isMinimized ? (
           /* Minimized Bubble floating node */
-          <motion.button
+          <motion.div
             key="bubble"
+            drag
+            dragMomentum={false}
+            onDragEnd={handleDragEnd}
             className={styles.bubble}
-            onClick={handleMinimizeToggle}
+            style={{ x, y }}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            title="Expand Session Stats"
+            onClick={handleMinimizeToggle}
+            onDoubleClick={handleResetPosition}
+            title="Drag to move | Click to expand | Double-click to reset"
           >
             <FaChartLine className={styles.bubbleIcon} />
             {sessionStats.bets > 0 && (
               <span className={`${styles.bubbleIndicator} ${sessionStats.profit >= 0 ? styles.indicatorWin : styles.indicatorLoss}`} />
             )}
-          </motion.button>
+          </motion.div>
         ) : (
           /* Full expanded live stats card overlay */
           <motion.div
@@ -327,17 +378,17 @@ export default function LiveStats() {
             dragMomentum={false}
             onDragEnd={handleDragEnd}
             className={styles.card}
-            style={{ x: position.x, y: position.y }}
-            initial={{ y: 50, scale: 0.95, opacity: 0 }}
-            animate={{ y: 0, scale: 1, opacity: 1 }}
-            exit={{ y: 50, scale: 0.95, opacity: 0 }}
-            transition={{ type: 'spring', damping: 24, stiffness: 220 }}
+            style={{ x, y }}
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.92, opacity: 0 }}
+            transition={{ duration: 0.15 }}
           >
             {/* Header / Grab Handle */}
             <div
               className={styles.header}
               onPointerDown={(e) => dragControls.start(e)}
-              onDoubleClick={handleHeaderDoubleClick}
+              onDoubleClick={handleResetPosition}
               title="Drag header to move | Double-click to reset position"
             >
               <div className={styles.headerTitle}>
