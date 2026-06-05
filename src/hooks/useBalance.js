@@ -66,7 +66,7 @@ export function useBalance() {
 
     // Append a unique suffix so the channel name is never reused while
     // the old subscription is still being torn down by Supabase internally.
-    const channelName = `profile-balance-${user.id}-${Date.now()}`;
+    const channelName = `profile-balance-${user.id}-${Date.now()}-${Math.random().toString(36).substring(2, 10)}`;
     const channel = supabase.channel(channelName);
     channel.on(
       'postgres_changes',
