@@ -319,6 +319,42 @@
   }
 }
 
+/* ─── Filter Toggle Bar ─── */
+.filterBar {
+  display: flex;
+  padding: 0.55rem 1.1rem 0 1.1rem;
+  gap: 0.5rem;
+}
+
+.filterBtn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 0.35rem 0;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.filterBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.filterBtnActive {
+  background: rgba(108, 92, 231, 0.12) !important;
+  border-color: rgba(108, 92, 231, 0.4) !important;
+  color: #6c5ce7 !important;
+  box-shadow: 0 0 10px rgba(108, 92, 231, 0.1);
+}
+
 /* ─── Mobile viewports overrides ─── */
 @media (max-width: 768px) {
   .statsWrapper {

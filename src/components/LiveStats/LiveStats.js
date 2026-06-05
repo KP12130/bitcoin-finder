@@ -1,34 +1,68 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence, useDragControls, useMotionValue } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { FaTimes, FaMinus, FaSync, FaChartLine, FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 import { useCurrency } from '@/hooks/useCurrency';
 import styles from './LiveStats.module.css';
 
+const ROUTE_TO_GAME = {
+  '/play': { id: 'mining', label: 'Mine ⛏️' },
+  '/slots': { id: 'slot', label: 'Slots 🎰' },
+  '/crash': { id: 'crash', label: 'Crash 🚀' },
+  '/dice': { id: 'dice', label: 'Dice 🎲' },
+  '/plinko': { id: 'plinko', label: 'Plinko 🟢' },
+  '/mines': { id: 'mines', label: 'Mines 💣' },
+  '/limbo': { id: 'limbo', label: 'Limbo 🎯' },
+  '/tower': { id: 'tower', label: 'Tower 🏰' },
+  '/hilo': { id: 'hilo', label: 'Hi-Lo 📈' },
+  '/blackjack': { id: 'blackjack', label: 'Blackjack 🃏' },
+  '/coinflip': { id: 'coinflip', label: 'Coin Flip 🪙' },
+  '/cryptopop': { id: 'cryptopop', label: 'Token Pop 🪙' },
+  '/chickenroad': { id: 'chickenroad', label: 'Chicken Road 🐓' },
+  '/snakeroll': { id: 'snakeroll', label: 'Snake Roll 🐍' },
+  '/videopoker': { id: 'videopoker', label: 'Video Poker 🃏' },
+  '/keno': { id: 'keno', label: 'Keno 🎯' },
+  '/roulette': { id: 'roulette', label: 'Roulette 🎡' },
+  '/scratch': { id: 'scratch', label: 'Scratch 🎟️' },
+  '/bullrun': { id: 'bullrun', label: 'Bull Run 📈' },
+  '/baccarat': { id: 'baccarat', label: 'Baccarat 🃏' },
+  '/lottery': { id: 'lottery', label: 'Lottery 🎟️' }
+};
+
 export default function LiveStats() {
   const { currency, prices } = useCurrency();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [activeTab, setActiveTab] = useState('stats'); // 'stats' | 'graph'
+  const [filterMode, setFilterMode] = useState('all'); // 'all' | 'game'
 
   // Dragging controls and position motion values
   const dragControls = useDragControls();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Session stats state
-  const [sessionStats, setSessionStats] = useState({
-    profit: 0,
-    wagered: 0,
-    bets: 0,
-    wins: 0,
-    losses: 0,
-    history: [0]
-  });
+  // Raw session wagers list state
+  const [sessionWagers, setSessionWagers] = useState([]);
 
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+
+  // Detect active game based on path
+  const activeGame = useMemo(() => {
+    return ROUTE_TO_GAME[pathname] || null;
+  }, [pathname]);
+
+  // Default to game filter when entering a game route
+  useEffect(() => {
+    if (activeGame) {
+      setFilterMode('game');
+    } else {
+      setFilterMode('all');
+    }
+  }, [pathname, activeGame]);
 
   // Load configuration and saved stats on mount
   useEffect(() => {
@@ -38,22 +72,42 @@ export default function LiveStats() {
       setIsOpen(savedOpen);
       setIsMinimized(savedMin);
 
-      const savedData = localStorage.getItem('btcfinder_live_stats');
-      if (savedData) {
+      const savedWagers = localStorage.getItem('btcfinder_session_wagers');
+      if (savedWagers) {
         try {
-          const parsed = JSON.parse(savedData);
-          const sanitized = {
-            profit: isNaN(Number(parsed.profit)) ? 0 : Number(parsed.profit),
-            wagered: isNaN(Number(parsed.wagered)) ? 0 : Number(parsed.wagered),
-            bets: isNaN(Number(parsed.bets)) ? 0 : Number(parsed.bets),
-            wins: isNaN(Number(parsed.wins)) ? 0 : Number(parsed.wins),
-            losses: isNaN(Number(parsed.losses)) ? 0 : Number(parsed.losses),
-            history: Array.isArray(parsed.history) ? parsed.history.filter(v => !isNaN(Number(v))) : [0]
-          };
-          setSessionStats(sanitized);
-          localStorage.setItem('btcfinder_live_stats', JSON.stringify(sanitized));
+          const parsed = JSON.parse(savedWagers);
+          if (Array.isArray(parsed)) {
+            setSessionWagers(parsed.map(w => ({
+              gameType: String(w.gameType || 'all'),
+              bet: Number(w.bet || 0),
+              payout: Number(w.payout || 0),
+              won: !!w.won,
+              timestamp: Number(w.timestamp || Date.now())
+            })));
+          }
         } catch (e) {
-          console.error('Failed to parse saved live stats:', e);
+          console.error('Failed to parse saved session wagers:', e);
+        }
+      } else {
+        // Migration fallback: if they have old stats structure but no wagers array
+        const savedData = localStorage.getItem('btcfinder_live_stats');
+        if (savedData) {
+          try {
+            const parsed = JSON.parse(savedData);
+            if (parsed && Number(parsed.bets || 0) > 0) {
+              const initialWager = {
+                gameType: 'all',
+                bet: Number(parsed.wagered || 0),
+                payout: Number(parsed.wagered || 0) + Number(parsed.profit || 0),
+                won: Number(parsed.profit || 0) >= 0,
+                timestamp: Date.now()
+              };
+              setSessionWagers([initialWager]);
+              localStorage.setItem('btcfinder_session_wagers', JSON.stringify([initialWager]));
+            }
+          } catch (e) {
+            console.error('Failed to migrate old stats format:', e);
+          }
         }
       }
 
@@ -121,35 +175,86 @@ export default function LiveStats() {
     return `${sign}${sym}${formatted}`;
   }, [currency, prices]);
 
+  // Calculate current stats on-the-fly depending on selected game filters
+  const selectedGameType = filterMode === 'all' ? 'all' : (activeGame?.id || 'all');
+
+  const currentStats = useMemo(() => {
+    const wagers = sessionWagers.filter(w => selectedGameType === 'all' || w.gameType === selectedGameType);
+    let profit = 0;
+    let wagered = 0;
+    let bets = wagers.length;
+    let wins = 0;
+    let losses = 0;
+    let history = [0];
+
+    wagers.forEach(w => {
+      const net = w.payout - w.bet;
+      profit += net;
+      wagered += w.bet;
+      if (w.won) wins++;
+      else losses++;
+      history.push(Number(profit.toFixed(4)));
+    });
+
+    return {
+      profit: Number(profit.toFixed(4)),
+      wagered: Number(wagered.toFixed(4)),
+      bets,
+      wins,
+      losses,
+      history
+    };
+  }, [sessionWagers, selectedGameType]);
+
   // Handle incoming wagers from player using central addGameResult events
   useEffect(() => {
     const handleNewBet = (e) => {
       const bet = e.detail; // gameResult object from storage.js
       if (!bet) return;
 
-      setSessionStats((prev) => {
-        const prevProfit = Number(prev?.profit ?? 0);
-        const prevWagered = Number(prev?.wagered ?? 0);
-        const prevBets = Number(prev?.bets ?? 0);
-        const prevWins = Number(prev?.wins ?? 0);
-        const prevLosses = Number(prev?.losses ?? 0);
-        const prevHistory = Array.isArray(prev?.history) ? prev.history : [0];
+      setSessionWagers((prev) => {
+        const betAmt = Number(bet.bet ?? 0);
+        const payoutAmt = Number(bet.payout ?? 0);
+        const wonVal = !!bet.won;
+        const gameTypeVal = String(bet.gameType ?? 'all');
 
-        const netProfit = Number(bet.payout ?? 0) - Number(bet.bet ?? 0);
-        const newProfit = Number((prevProfit + netProfit).toFixed(4));
-        const newWagered = Number((prevWagered + Number(bet.bet ?? 0)).toFixed(4));
-        const newHistory = [...prevHistory, newProfit].slice(-100);
-
-        const updated = {
-          profit: newProfit,
-          wagered: newWagered,
-          bets: prevBets + 1,
-          wins: prevWins + (bet.won ? 1 : 0),
-          losses: prevLosses + (bet.won ? 0 : 1),
-          history: newHistory
+        const newWager = {
+          gameType: gameTypeVal,
+          bet: betAmt,
+          payout: payoutAmt,
+          won: wonVal,
+          timestamp: Date.now()
         };
 
-        localStorage.setItem('btcfinder_live_stats', JSON.stringify(updated));
+        const updated = [...prev, newWager].slice(-500); // keep last 500 wagers
+        localStorage.setItem('btcfinder_session_wagers', JSON.stringify(updated));
+
+        // Sync old live stats key for legacy compatibility
+        let currentProfit = 0;
+        let currentWagered = 0;
+        let currentBets = updated.length;
+        let currentWins = 0;
+        let currentLosses = 0;
+        let currentHistory = [0];
+
+        updated.forEach(w => {
+          const net = w.payout - w.bet;
+          currentProfit += net;
+          currentWagered += w.bet;
+          if (w.won) currentWins++;
+          else currentLosses++;
+          currentHistory.push(Number(currentProfit.toFixed(4)));
+        });
+
+        localStorage.setItem('btcfinder_live_stats', JSON.stringify({
+          profit: Number(currentProfit.toFixed(4)),
+          wagered: Number(currentWagered.toFixed(4)),
+          bets: currentBets,
+          wins: currentWins,
+          losses: currentLosses,
+          history: currentHistory.slice(-100)
+        }));
+
         return updated;
       });
     };
@@ -177,7 +282,7 @@ export default function LiveStats() {
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, width, height);
 
-    const history = sessionStats.history;
+    const history = currentStats.history;
     if (history.length < 2) {
       ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
       ctx.font = '11px sans-serif';
@@ -285,7 +390,7 @@ export default function LiveStats() {
     ctx.arc(last.x, last.y, 7, 0, Math.PI * 2);
     ctx.stroke();
     ctx.globalAlpha = 1;
-  }, [sessionStats.history, formatValue, activeTab]);
+  }, [currentStats.history, formatValue, activeTab]);
 
   // Re-draw when tab becomes graph or stats updates
   useEffect(() => {
@@ -312,16 +417,9 @@ export default function LiveStats() {
   };
 
   const handleReset = () => {
-    const freshStats = {
-      profit: 0,
-      wagered: 0,
-      bets: 0,
-      wins: 0,
-      losses: 0,
-      history: [0]
-    };
-    setSessionStats(freshStats);
-    localStorage.setItem('btcfinder_live_stats', JSON.stringify(freshStats));
+    setSessionWagers([]);
+    localStorage.removeItem('btcfinder_session_wagers');
+    localStorage.removeItem('btcfinder_live_stats');
     if (activeTab === 'graph') {
       setTimeout(drawChart, 20);
     }
@@ -364,8 +462,8 @@ export default function LiveStats() {
             title="Drag to move | Click to expand | Double-click to reset"
           >
             <FaChartLine className={styles.bubbleIcon} />
-            {sessionStats.bets > 0 && (
-              <span className={`${styles.bubbleIndicator} ${sessionStats.profit >= 0 ? styles.indicatorWin : styles.indicatorLoss}`} />
+            {currentStats.bets > 0 && (
+              <span className={`${styles.bubbleIndicator} ${currentStats.profit >= 0 ? styles.indicatorWin : styles.indicatorLoss}`} />
             )}
           </motion.div>
         ) : (
@@ -421,6 +519,24 @@ export default function LiveStats() {
               </button>
             </div>
 
+            {/* Game Filter pill switcher bar */}
+            {activeGame && (
+              <div className={styles.filterBar}>
+                <button
+                  className={`${styles.filterBtn} ${filterMode === 'all' ? styles.filterBtnActive : ''}`}
+                  onClick={() => setFilterMode('all')}
+                >
+                  All Session
+                </button>
+                <button
+                  className={`${styles.filterBtn} ${filterMode === 'game' ? styles.filterBtnActive : ''}`}
+                  onClick={() => setFilterMode('game')}
+                >
+                  {activeGame.label}
+                </button>
+              </div>
+            )}
+
             {/* Card Body content */}
             <div className={styles.body}>
               {activeTab === 'stats' ? (
@@ -428,22 +544,24 @@ export default function LiveStats() {
                 <div className={styles.statsGrid}>
                   {/* Profit block */}
                   <div className={`${styles.statCard} ${styles.fullWidth}`}>
-                    <span className={styles.label}>Session Profit / Loss</span>
-                    <div className={`${styles.value} ${sessionStats.profit > 0 ? styles.win : sessionStats.profit < 0 ? styles.loss : ''}`}>
-                      {formatValue(sessionStats.profit)}
+                    <span className={styles.label}>
+                      {filterMode === 'all' ? 'Session' : activeGame?.label.split(' ')[0]} Profit / Loss
+                    </span>
+                    <div className={`${styles.value} ${currentStats.profit > 0 ? styles.win : currentStats.profit < 0 ? styles.loss : ''}`}>
+                      {formatValue(currentStats.profit)}
                     </div>
                   </div>
 
                   {/* Wagered block */}
                   <div className={styles.statCard}>
                     <span className={styles.label}>Total Wagered</span>
-                    <div className={styles.valueSmall}>{formatValue(sessionStats.wagered)}</div>
+                    <div className={styles.valueSmall}>{formatValue(currentStats.wagered)}</div>
                   </div>
 
                   {/* Bets count block */}
                   <div className={styles.statCard}>
                     <span className={styles.label}>Bets Placed</span>
-                    <div className={styles.valueSmall}>{sessionStats.bets}</div>
+                    <div className={styles.valueSmall}>{currentStats.bets}</div>
                   </div>
 
                   {/* Wins block */}
@@ -451,7 +569,7 @@ export default function LiveStats() {
                     <span className={styles.label}>Wins</span>
                     <div className={styles.row}>
                       <FaRegArrowAltCircleUp className={styles.trendUp} />
-                      <span className={styles.valueSmall}>{sessionStats.wins}</span>
+                      <span className={styles.valueSmall}>{currentStats.wins}</span>
                     </div>
                   </div>
 
@@ -460,7 +578,7 @@ export default function LiveStats() {
                     <span className={styles.label}>Losses</span>
                     <div className={styles.row}>
                       <FaRegArrowAltCircleDown className={styles.trendDown} />
-                      <span className={styles.valueSmall}>{sessionStats.losses}</span>
+                      <span className={styles.valueSmall}>{currentStats.losses}</span>
                     </div>
                   </div>
                 </div>
