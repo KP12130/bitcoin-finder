@@ -9,11 +9,11 @@ import { addGameResult, updateStats } from '@/lib/storage';
 export const SYMBOLS = [
   { id: 'diamond', emoji: '💎', label: 'Diamond', multiplier: 50, weight: 1 },
   { id: 'rocket',  emoji: '🚀', label: 'Rocket',  multiplier: 25, weight: 2 },
-  { id: 'star',    emoji: '⭐', label: 'Star',    multiplier: 15, weight: 4 },
-  { id: 'bitcoin', emoji: '₿',  label: 'Bitcoin', multiplier: 10, weight: 6 },
-  { id: 'bell',    emoji: '🔔', label: 'Bell',    multiplier: 5,  weight: 10 },
-  { id: 'clover',  emoji: '🍀', label: 'Clover',  multiplier: 3,  weight: 14 },
-  { id: 'lemon',   emoji: '🍋', label: 'Lemon',   multiplier: 1.5, weight: 20 },
+  { id: 'star',    emoji: '⭐', label: 'Star',    multiplier: 10, weight: 5 },
+  { id: 'bitcoin', emoji: '₿',  label: 'Bitcoin', multiplier: 5,  weight: 10 },
+  { id: 'bell',    emoji: '🔔', label: 'Bell',    multiplier: 3,  weight: 18 },
+  { id: 'clover',  emoji: '🍀', label: 'Clover',  multiplier: 2,  weight: 28 },
+  { id: 'lemon',   emoji: '🍋', label: 'Lemon',   multiplier: 1,  weight: 40 },
 ];
 
 const TOTAL_WEIGHT = SYMBOLS.reduce((acc, s) => acc + s.weight, 0);
@@ -30,8 +30,8 @@ function pickWeightedSymbol() {
 function generateCard() {
   const panels = Array(9).fill(null);
 
-  // 17.5% chance of guaranteed win (RTP ~104%)
-  const isWin = Math.random() < 0.175;
+  // 29% chance of guaranteed win (RTP ~96.5%)
+  const isWin = Math.random() < 0.29;
 
   if (isWin) {
     const winSym = pickWeightedSymbol();
