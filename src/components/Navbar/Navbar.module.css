@@ -905,8 +905,37 @@
   box-shadow: 0 0 18px rgba(0, 212, 255, 0.35) !important;
 }
 
+.statsToggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1.05rem;
+  background: rgba(108, 92, 231, 0.08);
+  border: 1px solid rgba(108, 92, 231, 0.25);
+  border-radius: 999px;
+  color: #6c5ce7;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.statsToggleBtn:hover {
+  background: rgba(108, 92, 231, 0.15);
+  border-color: rgba(108, 92, 231, 0.5);
+  box-shadow: 0 0 16px rgba(108, 92, 231, 0.2);
+}
+
+.statsToggleBtnActive {
+  background: rgba(108, 92, 231, 0.22) !important;
+  border-color: #6c5ce7 !important;
+  box-shadow: 0 0 18px rgba(108, 92, 231, 0.35) !important;
+}
+
 @media (max-width: 900px) {
-  .chatBtnText {
+  .chatBtnText, .statsBtnText {
     display: none;
   }
 }

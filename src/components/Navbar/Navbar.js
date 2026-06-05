@@ -20,6 +20,7 @@ import { useCurrency, CURRENCY_DETAILS } from '@/hooks/useCurrency';
 import VipSettings from '@/components/VipSettings/VipSettings';
 import VipLevelUpCelebration from '@/components/VipLevelUpCelebration/VipLevelUpCelebration';
 import ChatSidebar from '@/components/ChatSidebar/ChatSidebar';
+import LiveStats from '@/components/LiveStats/LiveStats';
 import { useChat } from '@/hooks/useChat';
 import { supabase, isDbEnabled } from '@/lib/supabase';
 import WalletModal from '@/components/WalletModal/WalletModal';
@@ -85,6 +86,27 @@ export default function Navbar({ balance = 0 }) {
   
   const { currency, setCurrency, activeSymbol, prices } = useCurrency();
   const { chatOpen, toggleChat } = useChat();
+  const [liveStatsOpen, setLiveStatsOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('btcfinder_livestats_open') === 'true';
+      setLiveStatsOpen(saved);
+
+      const handleToggle = (e) => {
+        setLiveStatsOpen(e.detail);
+      };
+      window.addEventListener('livestats-toggle-state', handleToggle);
+      return () => window.removeEventListener('livestats-toggle-state', handleToggle);
+    }
+  }, []);
+
+  const toggleLiveStats = () => {
+    const next = !liveStatsOpen;
+    setLiveStatsOpen(next);
+    localStorage.setItem('btcfinder_livestats_open', String(next));
+    window.dispatchEvent(new CustomEvent('livestats-toggle-state', { detail: next }));
+  };
 
   const displayBalance = liveBalance ?? balance;
 
@@ -339,7 +361,6 @@ export default function Navbar({ balance = 0 }) {
             <span>Wallet</span>
           </motion.button>
 
-          {/* Social Chat Toggle */}
           <motion.button
             className={`${styles.chatToggleBtn} ${chatOpen ? styles.chatToggleBtnActive : ''}`}
             onClick={toggleChat}
@@ -349,6 +370,18 @@ export default function Navbar({ balance = 0 }) {
           >
             <FaComments />
             <span className={styles.chatBtnText}>Chat</span>
+          </motion.button>
+
+          {/* Live Stats Toggle */}
+          <motion.button
+            className={`${styles.statsToggleBtn} ${liveStatsOpen ? styles.statsToggleBtnActive : ''}`}
+            onClick={toggleLiveStats}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            title="Toggle Live Stats"
+          >
+            <BiBarChartAlt2 />
+            <span className={styles.statsBtnText}>Stats</span>
           </motion.button>
 
           {/* Multi-Currency Balance Chip & Popover */}
@@ -635,10 +668,10 @@ export default function Navbar({ balance = 0 }) {
           router.push('/lobby');
         }}
       />
-      {/* ---- VIP settings widget ---- */}
       <VipSettings />
       <VipLevelUpCelebration />
       <ChatSidebar />
+      <LiveStats />
 
       {/* ---- Multi-Device Blocker Overlay ---- */}
       <AnimatePresence>
