@@ -3,6 +3,7 @@ import AuthGuard from '@/components/AuthGuard/AuthGuard';
 import { LiveBetsProvider } from '@/hooks/useLiveBets';
 import { CurrencyProvider } from '@/hooks/useCurrency';
 import ThemeParticles from '@/components/ThemeParticles/ThemeParticles';
+import JuiceEngine from '@/components/JuiceEngine/JuiceEngine';
 import './globals.css';
 
 const orbitron = Orbitron({
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${orbitron.variable} ${inter.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <ThemeParticles />
+        <JuiceEngine />
         <AuthGuard>
           <CurrencyProvider>
             <LiveBetsProvider>

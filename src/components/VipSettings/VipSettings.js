@@ -190,6 +190,7 @@ export default function VipSettings() {
                     { id: 'default', label: 'Dark Mode', emoji: '🌑' },
                     { id: 'halloween', label: 'Halloween', emoji: '🎃' },
                     { id: 'christmas', label: 'Christmas', emoji: '🎄' },
+                    { id: 'bitcoin', label: 'Satoshi Orange', emoji: '₿' },
                   ].map(t => (
                     <button
                       key={t.id}
@@ -199,6 +200,7 @@ export default function VipSettings() {
                       <span className={styles.feltSample} style={{
                         background: t.id === 'halloween' ? 'linear-gradient(135deg, #ff6b00, #7c3aed)' :
                                     t.id === 'christmas' ? 'linear-gradient(135deg, #dc2626, #16a34a)' :
+                                    t.id === 'bitcoin' ? 'linear-gradient(135deg, #f7931a, #fdb94d)' :
                                     'linear-gradient(135deg, #0a0e1a, #111827)',
                         borderRadius: '4px',
                       }} />

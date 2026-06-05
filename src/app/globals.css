@@ -427,8 +427,38 @@ main {
 
 [data-theme="christmas"] body::after {
   background: radial-gradient(ellipse at 50% 0%, rgba(22, 163, 74, 0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 50%, rgba(220, 38, 38, 0.06) 0%, transparent 50%),
               radial-gradient(ellipse at 20% 80%, rgba(22, 163, 74, 0.06) 0%, transparent 50%);
+}
+
+/* Bitcoin / Satoshi Orange Theme */
+[data-theme="bitcoin"] {
+  --color-bg: #0b0704;
+  --color-bg-light: #160e08;
+  --color-bg-card: rgba(22, 14, 8, 0.9);
+  --color-bg-card-hover: rgba(30, 20, 12, 0.98);
+  --color-gold: #f7931a;
+  --color-gold-light: #fdb94d;
+  --color-gold-dim: rgba(247, 147, 26, 0.15);
+  --color-blue: #f7931a;
+  --color-blue-dim: rgba(247, 147, 26, 0.15);
+  --color-green: #00ff88;
+  --color-green-dim: rgba(0, 255, 136, 0.15);
+  --color-purple: #f7931a;
+  --glow-gold: 0 0 20px rgba(247, 147, 26, 0.45);
+  --glow-blue: 0 0 20px rgba(247, 147, 26, 0.45);
+  --glow-green: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+[data-theme="bitcoin"] body::before {
+  background-image:
+    linear-gradient(rgba(247, 147, 26, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 147, 26, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="bitcoin"] body::after {
+  background: radial-gradient(ellipse at 50% 0%, rgba(247, 147, 26, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(247, 147, 26, 0.06) 0%, transparent 50%),
+              radial-gradient(ellipse at 20% 80%, rgba(247, 147, 26, 0.05) 0%, transparent 50%);
 }
 
 /* Theme particle animations */
