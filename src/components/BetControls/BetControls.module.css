@@ -1,0 +1,518 @@
+/* =============================================
+   BetControls – Premium Crypto Casino Controls
+   ============================================= */
+
+.container {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+.container:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* ── Section ────────────────────────────────── */
+
+.section {
+  margin-bottom: 1.75rem;
+}
+
+.section:last-of-type {
+  margin-bottom: 0;
+}
+
+.sectionLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sectionIcon {
+  color: var(--color-gold);
+  font-size: 0.85rem;
+}
+
+/* ── Bet Amount ─────────────────────────────── */
+
+.betHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.balanceDisplay {
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  font-weight: 500;
+}
+
+.balanceAmount {
+  color: var(--color-gold);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 0.625rem;
+}
+
+.currencySymbol {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.betInput {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text-bright);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  -moz-appearance: textfield;
+}
+
+.betInput::-webkit-inner-spin-button,
+.betInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.betInput:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-dim), var(--glow-gold);
+}
+
+.betInput:hover:not(:focus) {
+  border-color: var(--color-border-hover);
+}
+
+.quickBetRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.quickBetBtn {
+  padding: 0.5rem 0;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Orbitron', sans-serif;
+  transition: var(--transition-fast);
+  cursor: pointer;
+  text-align: center;
+}
+
+.quickBetBtn:hover {
+  background: var(--color-gold-dim);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-1px);
+}
+
+.quickBetBtn:active {
+  transform: translateY(0);
+}
+
+/* ── Divider ────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-hover),
+    transparent
+  );
+  margin: 1.5rem 0;
+}
+
+/* ── Guess Count ────────────────────────────── */
+
+.guessCountDisplay {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.guessCountNumber {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.guessCountLabel {
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.125rem;
+}
+
+/* ── Range Slider ───────────────────────────── */
+
+.sliderWrapper {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--color-gold) 0%,
+    var(--color-gold) var(--slider-progress, 50%),
+    rgba(255, 255, 255, 0.08) var(--slider-progress, 50%),
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  outline: none;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.5),
+              0 0 24px rgba(247, 147, 26, 0.2),
+              0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(247, 147, 26, 0.7),
+              0 0 40px rgba(247, 147, 26, 0.3),
+              0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.5),
+              0 0 24px rgba(247, 147, 26, 0.2),
+              0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.375rem;
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* ── Stats Row (Win Chance + Multiplier) ────── */
+
+.statsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.statBox {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.statLabel {
+  font-size: 0.6rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.statValueGreen {
+  composes: statValue;
+  color: var(--color-green);
+}
+
+.statValueBlue {
+  composes: statValue;
+  color: var(--color-blue);
+}
+
+/* ── Difficulty Presets ──────────────────────── */
+
+.presetsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.presetBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.625rem 0.25rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.presetEmoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.presetName {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+  transition: var(--transition-fast);
+}
+
+.presetBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+.presetBtn:hover .presetName {
+  color: var(--color-text);
+}
+
+.presetBtnActive {
+  composes: presetBtn;
+  background: var(--color-gold-dim);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.15);
+}
+
+.presetBtnActive .presetName {
+  color: var(--color-gold);
+}
+
+/* ── Potential Win ──────────────────────────── */
+
+.potentialWin {
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.potentialWinLabel {
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.375rem;
+}
+
+.potentialWinValue {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-green);
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+/* ── Start Mining Button ────────────────────── */
+
+.startBtn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.25rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--color-gold), #e8850f);
+  border: 1px solid var(--color-gold);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glow-gold);
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+
+.startBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.startBtn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.startBtn:hover:not(:disabled) {
+  box-shadow: 0 0 30px rgba(247, 147, 26, 0.5),
+              0 0 60px rgba(247, 147, 26, 0.2);
+  transform: translateY(-2px);
+  animation: none;
+}
+
+.startBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.startBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  animation: none;
+  box-shadow: none;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(247, 147, 26, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(247, 147, 26, 0.5),
+                0 0 50px rgba(247, 147, 26, 0.15);
+  }
+}
+
+/* ── Error Message ──────────────────────────── */
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--color-red-dim);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  border-radius: var(--radius);
+  color: var(--color-red);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ─────────────────────────────── */
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .guessCountNumber {
+    font-size: 2rem;
+  }
+
+  .presetsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quickBetRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .potentialWinValue {
+    font-size: 1.15rem;
+  }
+
+  .startBtn {
+    font-size: 0.9rem;
+    padding: 0.875rem;
+  }
+}

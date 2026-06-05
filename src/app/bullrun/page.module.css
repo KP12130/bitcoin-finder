@@ -1,0 +1,727 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bullRunPage {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #161026 0%, #0a0710 100%);
+  padding: 80px 1rem 40px 1rem;
+  overflow-x: hidden;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pageTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.pageSubtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Bankrupt Banner */
+.bankruptBanner {
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  backdrop-filter: blur(10px);
+}
+
+.bankruptBanner p {
+  color: #ff4757;
+  font-weight: 500;
+  margin: 0;
+}
+
+.bailoutBtn {
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bailoutBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+}
+
+/* Layout */
+.gameLayout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.controlsPanel {
+  position: sticky;
+  top: 90px;
+}
+
+.controlsCard {
+  background: rgba(25, 18, 44, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Tabs */
+.tabsHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Field Groups */
+.fieldGroup {
+  margin-bottom: 1.25rem;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.fieldIcon {
+  color: #00d4ff;
+  font-size: 0.85rem;
+}
+
+/* Market Select */
+.marketSelect {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem;
+  color: #fff;
+  font-weight: 600;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.marketSelect:focus {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+/* Bet Input */
+.inputRow {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.betInput, .autoRoundsInput {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.betInput:focus, .autoRoundsInput:focus {
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.inputUnit {
+  position: absolute;
+  right: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.quickBets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.quickBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.35rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.quickBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 1.25rem 0;
+}
+
+/* Action grids */
+.manualEntryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.longBtn, .shortBtn {
+  padding: 0.95rem;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.longBtn {
+  background: linear-gradient(135deg, #00b894 0%, #00ff88 100%);
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+}
+
+.longBtn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.45);
+}
+
+.shortBtn {
+  background: linear-gradient(135deg, #d63031 0%, #ff4757 100%);
+  box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
+}
+
+.shortBtn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.45);
+}
+
+.longBtn:disabled, .shortBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Auto mode panel */
+.autoSetupCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.autoDirGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35rem;
+}
+
+.dirBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 0.15s;
+}
+
+.dirBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.dirBtnActive {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+}
+
+.autoStatusAlert {
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.autoStatusText {
+  color: #00d4ff;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.autoMiniStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.autoPlayBtn {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #00a8ff 0%, #00d4ff 100%);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.autoPlayActive {
+  background: linear-gradient(135deg, #ff4757 0%, #ea2027 100%);
+  box-shadow: 0 4px 15px rgba(234, 32, 39, 0.3);
+}
+
+/* Active trade progress bar display */
+.runningDetailCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.85rem;
+  margin-top: 1rem;
+}
+
+.runningProgress {
+  background: rgba(255, 255, 255, 0.08);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressBar {
+  background: linear-gradient(90deg, #00ff88 0%, #00d4ff 100%);
+  height: 100%;
+  width: 100%;
+  animation: countdown 3s linear forwards;
+}
+
+@keyframes countdown {
+  0% { width: 100%; }
+  100% { width: 0%; }
+}
+
+.runningInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.runningInfo strong {
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+}
+
+/* Right Panel Displays */
+.displayPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Giant Ticker Card */
+.tickerCard {
+  background: rgba(25, 18, 44, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marketLabelInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mktBadge {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  font-family: 'Orbitron', monospace;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #fff;
+  width: fit-content;
+}
+
+.mktName {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.giantPrice {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.85rem;
+  font-weight: 800;
+  transition: color 0.1s;
+}
+
+.priceUp {
+  color: #00ff88;
+  animation: flashGreen 0.25s ease-out;
+}
+
+.priceDown {
+  color: #ff4757;
+  animation: flashRed 0.25s ease-out;
+}
+
+.priceFlat {
+  color: #fff;
+}
+
+.priceArrow {
+  font-size: 1rem;
+}
+
+@keyframes flashGreen {
+  0% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.7); }
+  100% { text-shadow: none; }
+}
+
+@keyframes flashRed {
+  0% { text-shadow: 0 0 20px rgba(255, 71, 87, 0.7); }
+  100% { text-shadow: none; }
+}
+
+/* Canvas Graph Wrapper */
+.chartWrapper {
+  background: rgba(25, 18, 44, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  height: 380px;
+  width: 100%;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.priceCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Overlay outcomes overlay on chart */
+.resultOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 7, 20, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.nonBlockingResultOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 7, 20, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none; /* Crucial! Allows clicking through it to start another round immediately */
+}
+
+.resultBannerCard {
+  background: rgba(30, 22, 54, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.outcomeTitleWin {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #00ff88;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.35);
+}
+
+.outcomeTitleLoss {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #ff4757;
+  text-shadow: 0 0 15px rgba(255, 71, 87, 0.35);
+}
+
+.outcomeMeta {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.outcomePayoutAmount {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 0.5rem 0;
+}
+
+.pnlWin {
+  color: #00ff88;
+}
+
+.pnlLoss {
+  color: #ff4757;
+}
+
+.nextRoundBtn {
+  background: linear-gradient(135deg, #00d4ff 0%, #0088ff 100%);
+  color: #fff;
+  border: none;
+  padding: 0.65rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+  transition: all 0.15s;
+}
+
+.nextRoundBtn:hover {
+  box-shadow: 0 6px 18px rgba(0, 212, 255, 0.45);
+}
+
+/* Trade History rows */
+.historySection {
+  background: rgba(25, 18, 44, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.25rem;
+  backdrop-filter: blur(20px);
+}
+
+.historyLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.historyRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.historyRows::-webkit-scrollbar {
+  width: 4px;
+}
+
+.historyRows::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+.historyRow {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.hMarket {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  width: 75px;
+}
+
+.hType {
+  font-weight: 800;
+  width: 55px;
+}
+
+.hDetails {
+  color: rgba(255,255,255,0.45);
+  flex-grow: 1;
+}
+
+.hPnl {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+}
+
+/* How to Play Info Block */
+.howToPlay {
+  background: rgba(25, 18, 44, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.howTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.stepNum {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.8rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.step strong {
+  color: #fff;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 900px) {
+  .gameLayout {
+    grid-template-columns: 1fr;
+  }
+  
+  .controlsPanel {
+    position: static;
+  }
+}

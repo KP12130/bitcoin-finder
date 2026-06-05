@@ -1,0 +1,178 @@
+/* ==========================================
+   CrashGraph — Live multiplier canvas
+   ========================================== */
+
+.graphWrapper {
+  position: relative;
+  width: 100%;
+  background: rgba(8, 12, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.graphWrapper.crashed {
+  border-color: rgba(255, 71, 87, 0.4);
+  animation: crashShake 0.5s ease;
+}
+
+@keyframes crashShake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+}
+
+/* ── Multiplier Overlay ── */
+.multiplierOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Running display */
+.runningDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.liveMult {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: #00ff88;
+  text-shadow: 0 0 30px rgba(0, 255, 136, 0.6), 0 0 60px rgba(0, 255, 136, 0.3);
+  letter-spacing: -0.02em;
+}
+
+/* Crashed display */
+.crashedDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.crashEmoji {
+  font-size: 3rem;
+  animation: popIn 0.3s ease;
+}
+
+.crashedMult {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: #ff4757;
+  text-shadow: 0 0 30px rgba(255, 71, 87, 0.7), 0 0 60px rgba(255, 71, 87, 0.4);
+}
+
+.crashedLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff4757;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Cashed Out display */
+.cashedOutDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cashedEmoji {
+  font-size: 3rem;
+  animation: popIn 0.3s ease;
+}
+
+.cashedMult {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  color: var(--color-gold);
+  text-shadow: 0 0 30px rgba(247, 147, 26, 0.7), 0 0 60px rgba(247, 147, 26, 0.4);
+}
+
+.cashedLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Idle display */
+.idleDisplay {
+  display: flex;
+  align-items: center;
+}
+
+.idleText {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.04em;
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── History Ticker ── */
+.historyTicker {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+  max-width: 260px;
+}
+
+.historyPill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.pillHigh {
+  background: rgba(0, 255, 136, 0.15);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.pillMid {
+  background: rgba(247, 147, 26, 0.15);
+  color: var(--color-gold);
+  border: 1px solid rgba(247, 147, 26, 0.3);
+}
+
+.pillLow {
+  background: rgba(255, 71, 87, 0.15);
+  color: #ff4757;
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}

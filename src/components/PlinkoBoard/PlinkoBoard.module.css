@@ -1,0 +1,51 @@
+/* ==========================================
+   PlinkoBoard — Physics Canvas Styles
+   ========================================== */
+
+.boardWrap {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background: radial-gradient(130% 90% at 50% 10%, rgba(10,14,24,0.95) 0%, rgba(5,7,12,0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+}
+
+.topFunnel {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.funnelHole {
+  width: 24px;
+  height: 8px;
+  background: rgba(247, 147, 26, 0.1);
+  border: 2px solid #f7931a;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.4);
+  animation: glow 2s infinite ease-in-out;
+}
+
+@keyframes glow {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}

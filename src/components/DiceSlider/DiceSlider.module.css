@@ -1,0 +1,211 @@
+/* ==========================================
+   DiceSlider — Interactive Roll Slider
+   ========================================== */
+
+.sliderWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(8, 12, 20, 0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+}
+
+/* Toggle Row */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toggleBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.toggleBtn:hover:not(:disabled) {
+  background: rgba(255,255,255,0.08);
+  color: var(--color-text);
+}
+.toggleBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.toggleActive {
+  background: rgba(0,255,136,0.12) !important;
+  border-color: #00ff88 !important;
+  color: #00ff88 !important;
+}
+
+.toggleStats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.statChip {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  color: var(--color-text-dim);
+}
+.statChip strong {
+  color: var(--color-text-bright);
+}
+
+/* Track */
+.track {
+  position: relative;
+  height: 40px;
+  border-radius: 20px;
+  overflow: visible;
+  cursor: crosshair;
+  user-select: none;
+}
+.trackDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.winZone {
+  position: absolute;
+  top: 12px;
+  height: 16px;
+  background: linear-gradient(90deg, rgba(0,255,136,0.7), rgba(0,200,100,0.5));
+  border-radius: 4px;
+  transition: left 0.05s, width 0.05s;
+  pointer-events: none;
+}
+
+.lossZone {
+  position: absolute;
+  top: 12px;
+  height: 16px;
+  background: linear-gradient(90deg, rgba(255,71,87,0.5), rgba(255,71,87,0.7));
+  border-radius: 4px;
+  transition: left 0.05s, width 0.05s;
+  pointer-events: none;
+}
+
+/* Thumb */
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+.thumb:active { cursor: grabbing; }
+
+.thumbLabel {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.thumbDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #00ff88;
+  box-shadow: 0 0 12px rgba(0,255,136,0.6), 0 0 24px rgba(0,255,136,0.3);
+  transition: box-shadow 0.15s ease;
+}
+.thumb:hover .thumbDot {
+  box-shadow: 0 0 20px rgba(0,255,136,0.9), 0 0 36px rgba(0,255,136,0.5);
+}
+
+/* Roll result marker
+   Maths: top=-28, bubble≈22px, gap=3px, pin=16px → dot centre = -28+22+3+16+7 = 20px = track bar centre ✓ */
+.resultMarker {
+  position: absolute;
+  top: -28px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.resultBubble {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.18rem 0.5rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+
+.resultPin {
+  width: 2px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.resultDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+.resultWin .resultBubble {
+  background: rgba(0,255,136,0.2);
+  border: 1px solid #00ff88;
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0,255,136,0.6);
+}
+.resultLoss .resultBubble {
+  background: rgba(255,71,87,0.2);
+  border: 1px solid #ff4757;
+  color: #ff4757;
+}
+
+.resultWin .resultPin  { background: #00ff88; box-shadow: 0 0 6px rgba(0,255,136,0.5); }
+.resultLoss .resultPin { background: #ff4757; box-shadow: 0 0 6px rgba(255,71,87,0.4); }
+
+.resultWin .resultDot  { background: rgba(0,255,136,0.3); border-color: #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.7); }
+.resultLoss .resultDot { background: rgba(255,71,87,0.3); border-color: #ff4757; box-shadow: 0 0 8px rgba(255,71,87,0.6); }
+
+
+
+/* Range labels */
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--color-text-dim);
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.04em;
+  padding: 0 2px;
+}

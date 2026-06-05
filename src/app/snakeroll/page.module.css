@@ -1,0 +1,737 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 1rem;
+  color: var(--color-text-dim, #8a91a8);
+}
+
+.cryptopopPage {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #151a30 0%, #0b0e17 80%);
+  color: #fff;
+  padding-bottom: 5rem;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+  padding-top: 1.5rem;
+}
+
+.pageTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.25);
+}
+
+.liveMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.onlineBadge {
+  color: #00ff88;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.liveBetsLink {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.liveBetsLink:hover {
+  color: #fff;
+}
+
+.headerRightActions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.helpBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.helpBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.bankruptBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  font-weight: 600;
+}
+
+.bailoutBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  background: #ff4757;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.bailoutBtn:hover {
+  background: #ff5263;
+  box-shadow: 0 0 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Master Game Layout */
+.gameLayout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 950px) {
+  .gameLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Controls Panel */
+.controlsPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.controlsCard {
+  background: rgba(14, 18, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Manual / Auto Mode tabs */
+.tabRow {
+  display: flex;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.25rem;
+}
+
+.tabBtn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0.5rem 0;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.tabBtn:hover {
+  color: #fff;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff !important;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.unifiedLabelHeader {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.goldBitcoinIcon {
+  color: #f7931a;
+}
+
+.usdValueLabel {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Unified Amount Input Field */
+.unifiedInputArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.goldDollarIcon {
+  color: #f7931a;
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-right: 0.6rem;
+}
+
+.monospaceTextField {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 0;
+  width: 100%;
+}
+
+.unifiedQuickBetButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.fractionQuickBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+.fractionQuickBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Dropdown select box */
+.customSelectBox {
+  position: relative;
+  width: 100%;
+}
+
+.diffDropdownSelect {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.diffDropdownSelect:focus {
+  border-color: rgba(0, 255, 136, 0.35);
+}
+
+.dropdownCarat {
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Action block controls */
+.actionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.dashGoBtnPrimaryBlue {
+  width: 100%;
+  height: 48px;
+  background: #2072e6; /* Bright screenshot blue */
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(32, 114, 230, 0.25);
+}
+.dashGoBtnPrimaryBlue:hover:not(:disabled) {
+  background: #3482f3;
+  box-shadow: 0 6px 18px rgba(32, 114, 230, 0.4);
+}
+.dashGoBtnPrimaryBlue:disabled {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.dashGoBtnRoll {
+  width: 100%;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.dashGoBtnRoll:hover:not(.rollBtnDisabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.rollBtnDisabled {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.02) !important;
+  color: rgba(255, 255, 255, 0.15) !important;
+  cursor: not-allowed !important;
+}
+
+.spinIcon {
+  animation: spinRound 1s infinite linear;
+}
+@keyframes spinRound {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Bottom Profit Read Only */
+.unifiedInputAreaReadOnly {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.profitAmtTextMonospace {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.cryptoBadgeTether {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #00af87; /* Tether Teal green */
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0, 175, 135, 0.3);
+}
+
+.badgeLetterIcon {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Right Display board & 4x4 Grid */
+.displayPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gridCard {
+  background: rgba(10, 14, 26, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  padding: 2.5rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.cardBurst {
+  box-shadow: inset 0 0 60px rgba(255, 71, 87, 0.12), 0 10px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 71, 87, 0.15);
+}
+
+.cardCashout {
+  box-shadow: inset 0 0 60px rgba(0, 255, 136, 0.1), 0 10px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(0, 255, 136, 0.15);
+}
+
+/* 4x4 perimeter loop grid */
+.perimeterLoopGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 110px);
+  grid-template-rows: repeat(4, 110px);
+  gap: 0.65rem;
+}
+
+@media (max-width: 550px) {
+  .perimeterLoopGrid {
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: repeat(4, 75px);
+    gap: 0.4rem;
+  }
+}
+
+.tileCell {
+  position: relative;
+  background: #1e2634; /* Dark slate blue */
+  border: 1.5px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 2px 3px rgba(255,255,255,0.03);
+}
+
+.startPlayIcon {
+  font-size: 1.5rem;
+  color: #2072e6; /* bright cyan blue */
+}
+
+.snakeShieldWrapper {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+.tileValBadge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tileCellPlayer {
+  background: rgba(0, 255, 136, 0.04) !important;
+  border-color: #00ff88 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2), inset 0 0 15px rgba(0, 255, 136, 0.05);
+}
+.tileCellPlayer .tileValBadge {
+  color: #00ff88;
+  font-weight: 900;
+}
+
+.playerToken {
+  font-size: 2.2rem;
+  position: absolute;
+  z-index: 10;
+  filter: drop-shadow(0 2px 10px rgba(0, 255, 136, 0.6));
+}
+
+.deadToken {
+  font-size: 2.2rem;
+  position: absolute;
+  z-index: 10;
+  filter: drop-shadow(0 2px 10px rgba(255, 71, 87, 0.7));
+}
+
+/* Center Dice Arena */
+.centerDiceArena {
+  background: #19202c; /* Same slate shade */
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.65rem;
+  box-sizing: border-box;
+}
+
+.diceContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.diceBlock {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  background: #dcdde6; /* Greyish white dice */
+  border: 1.5px solid #b2b4be;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 2px 3px #fff;
+  transition: transform 0.15s ease;
+  overflow: hidden;
+}
+
+.diceRollingLeft {
+  animation: diceRollLeft 0.8s ease-in-out;
+}
+.diceRollingRight {
+  animation: diceRollRight 0.8s ease-in-out;
+}
+
+@keyframes diceRollLeft {
+  0% { transform: scale(1) rotate(0deg) translateX(0); }
+  30% { transform: scale(1.15) rotate(180deg) translateX(-15px); }
+  100% { transform: scale(1) rotate(720deg) translateX(0); }
+}
+
+@keyframes diceRollRight {
+  0% { transform: scale(1) rotate(0deg) translateX(0); }
+  30% { transform: scale(1.15) rotate(-180deg) translateX(15px); }
+  100% { transform: scale(1) rotate(-720deg) translateX(0); }
+}
+
+/* 3x3 dice dot grid mapping */
+.diceDotsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 40px;
+  height: 40px;
+}
+
+.diceDotCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diceDot {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background: #1a1e27;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
+}
+
+.centerMultiplierIndicator {
+  background: #0f141e; /* Extremely dark inner pill */
+  border-radius: 10px;
+  padding: 0.5rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.indicatorValue {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+/* Bottom Pagination indicators */
+.paginationDotsContainer {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0.8rem;
+}
+
+.paginationDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition: all 0.2s;
+}
+
+.paginationDotActive {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
+}
+
+/* Ticker history */
+.historySection {
+  background: rgba(10, 14, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.historyTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.historyPills {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.historyPill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+/* Toast */
+.achievementToast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(10, 14, 26, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-gold, #f7931a);
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  z-index: 2000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.achievementIcon {
+  font-size: 1.6rem;
+}
+
+.achievementLabel {
+  font-size: 0.65rem;
+  color: var(--color-gold, #f7931a);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.achievementName {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 550px) {
+  .gridCard {
+    padding: 0.85rem;
+    min-height: auto;
+    border-radius: 16px;
+  }
+  .controlsCard {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+  .centerDiceArena {
+    padding: 0.4rem;
+    gap: 0.4rem;
+    border-radius: 12px;
+  }
+  .diceBlock {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+  }
+  .diceDotsGrid {
+    width: 30px;
+    height: 30px;
+  }
+  .diceDot {
+    width: 5px;
+    height: 5px;
+  }
+  .indicatorValue {
+    font-size: 1.05rem;
+  }
+  .centerMultiplierIndicator {
+    padding: 0.35rem 1rem;
+  }
+  .playerToken, .deadToken {
+    font-size: 1.6rem;
+  }
+  .snakeShieldWrapper {
+    width: 36px;
+    height: 36px;
+  }
+  .tileValBadge {
+    font-size: 0.68rem;
+  }
+}

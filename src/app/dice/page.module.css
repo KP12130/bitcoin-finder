@@ -1,0 +1,292 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  color: var(--color-text-dim);
+}
+
+.dicePage {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page Header */
+.pageHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pageTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, #00ff88, #00d4ff, #00ff88);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  margin-bottom: 0.4rem;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.pageSubtitle {
+  color: var(--color-text-dim);
+  font-size: 0.95rem;
+}
+
+/* Game Layout */
+.gameLayout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.controlsPanel {
+  position: sticky;
+  top: 90px;
+}
+
+.mainPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Big Roll Display */
+.bigResult {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+}
+.bigResultWin {
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.3);
+  box-shadow: 0 0 24px rgba(0,255,136,0.12);
+}
+.bigResultLoss {
+  background: rgba(255,71,87,0.08);
+  border: 1px solid rgba(255,71,87,0.3);
+}
+
+.bigResultEmoji { font-size: 2.5rem; }
+.bigResultNumber {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: var(--color-text-bright);
+}
+.bigResultLabel {
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+}
+.bigResultWin .bigResultNumber { color: #00ff88; text-shadow: 0 0 20px rgba(0,255,136,0.4); }
+.bigResultLoss .bigResultNumber { color: #ff4757; }
+
+/* Rolling State */
+.rollingDisplay {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+}
+.rollingDice { font-size: 2.5rem; }
+.rollingText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-dim);
+}
+
+/* Idle */
+.idleDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+}
+.idleText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: var(--color-text-dim);
+}
+
+/* History */
+.historySection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.historyLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+}
+.historyPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.pill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 20px;
+}
+.pillWin {
+  background: rgba(0,255,136,0.12);
+  border: 1px solid rgba(0,255,136,0.3);
+  color: #00ff88;
+}
+.pillLoss {
+  background: rgba(255,71,87,0.1);
+  border: 1px solid rgba(255,71,87,0.25);
+  color: #ff4757;
+}
+
+/* Bankrupt Banner */
+.bankruptBanner {
+  background: var(--color-red-dim);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.bailoutBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--color-gold), #e8850f);
+  color: #000;
+  border: 1px solid var(--color-gold);
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* How to Play */
+.howToPlay {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.howTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.step {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.stepNum {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  width: 1.75rem;
+  height: 1.75rem;
+  min-width: 1.75rem;
+  background: rgba(0, 255, 136, 0.12);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00ff88;
+}
+.step p {
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  line-height: 1.5;
+}
+.step strong { color: var(--color-text-bright); }
+
+/* Achievement Toast */
+.achievementToast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--glow-gold);
+  cursor: pointer;
+  z-index: 200;
+}
+.achievementIcon { font-size: 2rem; }
+.achievementLabel {
+  font-size: 0.7rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'Orbitron', sans-serif;
+}
+.achievementName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-bright);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .gameLayout {
+    grid-template-columns: 1fr;
+  }
+  .controlsPanel {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievementToast {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+}

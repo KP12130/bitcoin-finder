@@ -1,0 +1,591 @@
+/* ==========================================================
+   Keno Page Styles — Bitcoin Finder Casino
+   ========================================================== */
+
+/* ── Page Wrapper ── */
+.page {
+  min-height: 100vh;
+  padding: 90px 0 3rem;
+  background: var(--color-bg);
+}
+
+/* ── Two-column Layout ── */
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ==========================================================
+   LEFT COLUMN – Controls Panel
+   ========================================================== */
+.controlsPanel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 0.77rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Control Group ── */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* ── Text Input ── */
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.input:focus { outline: none; border-color: #f7931a; }
+.input:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Quick Bet Row ── */
+.quickBetRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+}
+
+.quickBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.4rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quickBtn:hover { background: rgba(255, 255, 255, 0.09); color: #fff; border-color: rgba(255,255,255,0.15); }
+.quickBtn:disabled { opacity: 0.28; cursor: not-allowed; }
+
+/* ── Picks Counter ── */
+.picksCounter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+}
+
+.picksLabel {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.picksCount {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* ── Clear button ── */
+.clearBtn {
+  background: rgba(255, 71, 87, 0.06);
+  border: 1px solid rgba(255, 71, 87, 0.18);
+  color: rgba(255, 71, 87, 0.75);
+  border-radius: 9px;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.clearBtn:hover { background: rgba(255, 71, 87, 0.12); color: #ff4757; border-color: rgba(255,71,87,0.35); }
+.clearBtn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+/* ── Play Button ── */
+.playBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #f7931a, #e07d0d);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(247, 147, 26, 0.18);
+  transition: box-shadow 0.2s;
+}
+.playBtn:disabled { opacity: 0.42; cursor: not-allowed; }
+
+.playBtnAgain {
+  background: linear-gradient(135deg, #00ff88, #00cb6b);
+  color: #000;
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.22);
+}
+
+/* ── Error ── */
+.errorMsg {
+  color: #ff4757;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.75rem;
+  background: rgba(255, 71, 87, 0.07);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  border-radius: 8px;
+}
+
+/* ── Pay Table Card ── */
+.payTableCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.payTableTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 0.25rem;
+}
+
+.payRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  transition: background 0.15s;
+}
+
+.payRowActive {
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  color: #00ff88;
+}
+
+.payMult {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  color: #ffd700;
+}
+.payRowActive .payMult { color: #fff; }
+
+/* ── Stats Card ── */
+.statsCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.statsHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.01);
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 8px;
+}
+
+.statVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.statLabel {
+  font-size: 0.56rem;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+/* ==========================================================
+   RIGHT COLUMN – Game Area
+   ========================================================== */
+.gameColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ── Result Banner ── */
+.resultBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  min-height: 52px;
+}
+
+.resultWin {
+  background: rgba(0, 255, 136, 0.06);
+  border-color: rgba(0, 255, 136, 0.25);
+}
+
+.resultLoss {
+  background: rgba(255, 71, 87, 0.05);
+  border-color: rgba(255, 71, 87, 0.2);
+}
+
+.resultDrawing {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.15);
+}
+
+.resultIdle {
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.resultEmoji {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.resultText {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+.resultText strong { color: #fff; }
+
+.winAmount {
+  color: #00ff88 !important;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+}
+
+/* ── Drawn Balls Tracker ── */
+.drawnTracker {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.drawnLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.drawnBalls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.miniball {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.6rem;
+  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.miniballDraw {
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  color: #00d4ff;
+}
+
+.miniballMatch {
+  background: rgba(0, 255, 136, 0.18);
+  border: 1px solid rgba(0, 255, 136, 0.5);
+  color: #00ff88;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.35);
+}
+
+/* ==========================================================
+   KENO GRID — 8 rows × 10 columns (numbers 1-80)
+   ========================================================== */
+.kenoGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.42rem;
+  width: 100%;
+  padding: 1.1rem;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+}
+
+/* ── Ball button base ── */
+.ball {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.45);
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  padding: 0;
+  line-height: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle shimmer on idle hover */
+.ball::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.12), transparent 65%);
+  pointer-events: none;
+}
+
+.ball:hover:not(:disabled) {
+  background: rgba(247, 147, 26, 0.1);
+  border-color: rgba(247, 147, 26, 0.35);
+  color: #f7931a;
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.18);
+}
+
+.ball:disabled {
+  cursor: default;
+}
+
+/* ── Picked (gold) ── */
+.ballPicked {
+  background: rgba(255, 215, 0, 0.14);
+  border-color: rgba(255, 215, 0, 0.55);
+  color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25),
+              inset 0 0 8px rgba(255, 215, 0, 0.08);
+}
+
+/* ── Drawn but not matched (cyan) ── */
+.ballDrawn {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+  color: #00d4ff;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+  animation: cyanFlash 0.35s ease-out both;
+}
+
+/* ── Matched (green pulsing) ── */
+.ballMatched {
+  background: rgba(0, 255, 136, 0.18);
+  border-color: rgba(0, 255, 136, 0.65);
+  color: #00ff88;
+  box-shadow: 0 0 14px rgba(0, 255, 136, 0.4),
+              inset 0 0 10px rgba(0, 255, 136, 0.1);
+  animation: matchPulse 1.2s ease-in-out infinite;
+}
+
+/* ==========================================================
+   Keyframe Animations
+   ========================================================== */
+
+@keyframes cyanFlash {
+  0%   { transform: scale(0.75); opacity: 0.5; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes matchPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.35),
+                inset 0 0 6px rgba(0, 255, 136, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 255, 136, 0.75),
+                inset 0 0 12px rgba(0, 255, 136, 0.18);
+  }
+}
+
+/* ==========================================================
+   Legend
+   ========================================================== */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.legendDot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.legendPicked {
+  background: rgba(255, 215, 0, 0.14);
+  border-color: rgba(255, 215, 0, 0.55);
+}
+
+.legendDrawn {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.legendMatched {
+  background: rgba(0, 255, 136, 0.18);
+  border-color: rgba(0, 255, 136, 0.65);
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .kenoGrid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.35rem;
+    padding: 0.85rem;
+  }
+  .ball {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .kenoGrid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.25rem;
+    padding: 0.6rem;
+  }
+  .ball {
+    font-size: 0.48rem;
+  }
+  .legend {
+    gap: 0.9rem;
+  }
+}
+
+/* ── Risk Selector ── */
+.riskSelectRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.riskBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0.5rem 0.25rem;
+  border-radius: 7px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.riskBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.riskBtnActive {
+  background: rgba(247, 147, 26, 0.1);
+  border: 1px solid rgba(247, 147, 26, 0.3) !important;
+  color: #f7931a !important;
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.1);
+}

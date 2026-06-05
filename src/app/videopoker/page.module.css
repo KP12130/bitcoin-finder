@@ -1,0 +1,681 @@
+/* ========================================
+   PAGE SHELL
+   ======================================== */
+.page {
+  min-height: 100vh;
+  padding: 90px 0 3rem;
+  background: var(--color-bg);
+  position: relative;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ========================================
+   LEFT COLUMN — Controls Panel
+   ======================================== */
+.controlsPanel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 100px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(255, 71, 87, 0.25);
+}
+
+.subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+  margin: 0.25rem 0 0;
+}
+
+/* Control Groups */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+/* Inputs */
+.inputRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.input:focus {
+  outline: none;
+  border-color: #f7931a;
+}
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quickBetGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.quickBetBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.45rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Orbitron', sans-serif;
+}
+.quickBetBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.quickBetBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff4757;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 71, 87, 0.07);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  border-radius: 8px;
+}
+
+/* Action Buttons */
+.actionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dealBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ff4757, #c0392b);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(255, 71, 87, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.dealBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.drawBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  background: linear-gradient(135deg, #00ff88, #00cc6a);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.newGameBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f7931a, #e8850f);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(247, 147, 26, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.holdActionsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.holdAllBtn, .discardAllBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.55rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.15s;
+}
+
+.holdAllBtn {
+  background: rgba(0, 212, 255, 0.07);
+  border-color: rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+}
+.holdAllBtn:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #00d4ff;
+}
+
+.discardAllBtn {
+  background: rgba(255, 71, 87, 0.07);
+  border-color: rgba(255, 71, 87, 0.2);
+  color: #ff4757;
+}
+.discardAllBtn:hover {
+  background: rgba(255, 71, 87, 0.15);
+  border-color: #ff4757;
+}
+
+/* ── Pay Table ── */
+.payTableCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.payTableHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.payRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0.35rem;
+  border-radius: 5px;
+  transition: background 0.15s;
+}
+
+.payRow.active {
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.payName {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.payRow.active .payName {
+  color: #ffd700;
+  font-weight: 600;
+}
+
+.payMult {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.payRow.active .payMult {
+  color: #ffd700;
+}
+
+.payMult.high { color: #00ff88; }
+.payMult.medium { color: #f7931a; }
+
+/* ── Session Stats ── */
+.statsCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 0.85rem;
+}
+
+.statsHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 0.5rem 0.25rem;
+  border-radius: 8px;
+}
+
+.statVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.statLabel {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+/* ========================================
+   RIGHT COLUMN — Table / Cards Area
+   ======================================== */
+.tableColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tableFelt {
+  position: relative;
+  background: var(--color-felt, rgba(0, 100, 50, 0.06));
+  border: 1.5px solid var(--color-felt-border, rgba(0, 255, 136, 0.12));
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 0 60px var(--color-felt-glow, rgba(0, 0, 0, 0.7));
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+/* ── Hand Name Banner ── */
+.handNameBanner {
+  text-align: center;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handNameText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.handNameText.win {
+  color: #00ff88;
+}
+
+.handNameText.loss {
+  color: #ff4757;
+}
+
+.handNameText.idle {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Cards Row ── */
+.cardsRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Individual Card ── */
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: default;
+  position: relative;
+}
+
+.cardWrapper.clickable {
+  cursor: pointer;
+}
+
+.card {
+  width: 100px;
+  height: 140px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  user-select: none;
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 2px solid transparent;
+}
+
+.cardWrapper.clickable:hover .card {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Held card glow */
+.card.held {
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.5), 0 6px 24px rgba(0, 212, 255, 0.3);
+  transform: translateY(-8px);
+}
+
+/* Win state glow */
+.card.winner {
+  border-color: #00ff88;
+  box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.5), 0 6px 24px rgba(0, 255, 136, 0.3);
+}
+
+/* Empty card placeholder */
+.cardEmpty {
+  width: 100px;
+  height: 140px;
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardEmptyInner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+/* Card face elements */
+.cardBlack { color: #1a1a2e; }
+.cardRed   { color: #e53935; }
+
+.cardCornerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.cardCornerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1;
+  transform: rotate(180deg);
+}
+
+.cardRank {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cardSuitSmall {
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.cardCenterSuit {
+  font-size: 3rem;
+  line-height: 1;
+  text-align: center;
+  align-self: center;
+}
+
+/* ── HOLD label ── */
+.holdLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+  text-transform: uppercase;
+  min-height: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.holdLabelEmpty {
+  min-height: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Payout display ── */
+.payoutDisplay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.payoutLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.payoutAmount {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.payoutAmount.win {
+  color: #00ff88;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.payoutAmount.loss {
+  color: #ff4757;
+}
+
+/* ── Idle prompt ── */
+.idlePrompt {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+/* ── Result overlay ── */
+.resultOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.resultBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+/* Loading */
+.loading {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-bg);
+  color: var(--color-text-dim);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .controlsPanel {
+    position: static;
+  }
+  .tableColumn {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardsRow {
+    gap: 0.5rem;
+  }
+
+  .card {
+    width: 64px;
+    height: 92px;
+    padding: 6px;
+    border-radius: 8px;
+  }
+
+  .cardEmpty {
+    width: 64px;
+    height: 92px;
+  }
+
+  .cardRank {
+    font-size: 0.85rem;
+  }
+
+  .cardSuitSmall {
+    font-size: 0.65rem;
+  }
+
+  .cardCenterSuit {
+    font-size: 1.8rem;
+  }
+
+  .tableFelt {
+    padding: 2rem 1rem;
+    min-height: 300px;
+  }
+
+  .payTableCard {
+    display: none;
+  }
+}

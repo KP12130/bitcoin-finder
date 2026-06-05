@@ -1,0 +1,835 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 1rem;
+  color: var(--color-text-dim, #8a91a8);
+}
+
+.cryptopopPage {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #151a30 0%, #0b0e17 80%);
+  color: #fff;
+  padding-bottom: 5rem;
+}
+
+.pageHeader {
+  margin-bottom: 2rem;
+  padding-top: 1.5rem;
+}
+
+.pageTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(247, 147, 26, 0.3);
+}
+
+.liveMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.onlineBadge {
+  color: #00ff88;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.liveBetsLink {
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.liveBetsLink:hover {
+  color: #fff;
+}
+
+.headerRightActions {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.helpBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.helpBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.bankruptBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ff4757;
+  font-weight: 600;
+}
+
+.bailoutBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  background: #ff4757;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.bailoutBtn:hover {
+  background: #ff5263;
+  box-shadow: 0 0 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Master Layout */
+.highwayLayout {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 950px) {
+  .highwayLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Controls Panel */
+.controlsPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.controlsCard {
+  background: rgba(14, 18, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.unifiedLabelHeader {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.goldBitcoinIcon {
+  color: #f7931a;
+}
+
+.usdValueLabel {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Unified Amount Input Field */
+.unifiedInputArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.goldDollarIcon {
+  color: #f7931a;
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-right: 0.6rem;
+}
+
+.monospaceTextField {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 0;
+  width: 100%;
+}
+
+.unifiedQuickBetButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.fractionQuickBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+.fractionQuickBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Guesses Indicator Box */
+.guessesGiantNumberDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.giantDigit {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 950;
+  color: #f7931a;
+  text-shadow: 0 0 15px rgba(247, 147, 26, 0.35);
+  line-height: 1;
+}
+
+.subGuessesLabel {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+}
+
+/* Orange custom slider track */
+.sliderContainerBlock {
+  padding: 0 0.5rem;
+}
+
+.orangeCustomSlider {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  cursor: pointer;
+}
+
+.orangeCustomSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f7931a;
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.8);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.orangeCustomSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Summary stats grid */
+.summaryStatsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.summaryBox {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.boxLabel {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+}
+
+.boxValueGreen {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+}
+
+.boxValueCyan {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #2072e6;
+  text-shadow: 0 0 8px rgba(32, 114, 230, 0.3);
+}
+
+/* Action block */
+.actionBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashGoBtnPrimaryBlue {
+  width: 100%;
+  height: 48px;
+  background: #2072e6;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(32, 114, 230, 0.25);
+}
+.dashGoBtnPrimaryBlue:hover:not(:disabled) {
+  background: #3482f3;
+  box-shadow: 0 6px 18px rgba(32, 114, 230, 0.4);
+}
+.dashGoBtnPrimaryBlue:disabled {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.15);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.dashCashoutBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0a300 0%, #b38200 100%);
+  border: 1px solid #ffd666;
+  border-radius: 10px;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(224, 163, 0, 0.25);
+  transition: all 0.2s;
+  height: 52px;
+}
+.dashCashoutBtn:hover {
+  box-shadow: 0 6px 16px rgba(224, 163, 0, 0.4);
+}
+
+.cashLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.cashAmt {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-top: 0.1rem;
+}
+
+.stepManualBtn {
+  flex: 1.2;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stepManualBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Preset buttons */
+.presetsPanelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.presetBtnOption {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+.presetBtnOption:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255,255,255,0.15);
+}
+.presetBtnOption:disabled {
+  cursor: not-allowed;
+}
+
+.presetActive {
+  border-color: var(--color-gold, #f7931a) !important;
+  background: rgba(247, 147, 26, 0.06) !important;
+}
+
+.presetDot {
+  font-size: 0.75rem;
+}
+
+.presetText {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+/* Right display horizontal road path */
+.displayPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.roadScrollWrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 2.2rem 1rem;
+  border-radius: 24px;
+  background: rgba(10, 14, 26, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+
+.cardBurst {
+  box-shadow: inset 0 0 60px rgba(255, 71, 87, 0.12), 0 10px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 71, 87, 0.15);
+}
+
+.cardCashout {
+  box-shadow: inset 0 0 60px rgba(0, 255, 136, 0.1), 0 10px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(0, 255, 136, 0.15);
+}
+
+.highwayCorridor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: max-content;
+  position: relative;
+}
+
+/* Start Segment */
+.startSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 310px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.startArchDoor {
+  width: 60px;
+  height: 100px;
+  border-radius: 30px 30px 0 0;
+  border: 3px solid rgba(247, 147, 26, 0.3);
+  background: radial-gradient(ellipse at bottom, #191410 0%, #090807 80%);
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(247, 147, 26, 0.2), 0 0 15px rgba(0,0,0,0.5);
+}
+
+.chickStandby {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+  z-index: 10;
+  filter: drop-shadow(0 0 12px rgba(247, 147, 26, 0.8));
+}
+
+/* Road Columns */
+.roadColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  height: 310px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1.2rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.roadColumnActive {
+  background: rgba(247, 147, 26, 0.04);
+  border-color: rgba(247, 147, 26, 0.5);
+  box-shadow: 0 0 20px rgba(247, 147, 26, 0.15), inset 0 0 15px rgba(247, 147, 26, 0.05);
+}
+
+.roadColumnActive::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  border: 2px solid var(--color-gold, #f7931a);
+  opacity: 0.6;
+  pointer-events: none;
+  animation: pulseActiveBorder 1.5s infinite alternate;
+}
+
+@keyframes pulseActiveBorder {
+  0% { opacity: 0.3; box-shadow: 0 0 5px rgba(247, 147, 26, 0.2); }
+  100% { opacity: 0.8; box-shadow: 0 0 15px rgba(247, 147, 26, 0.5); }
+}
+
+.roadColumnPassed {
+  background: rgba(0, 255, 136, 0.01);
+  border-color: rgba(0, 255, 136, 0.12);
+}
+
+.dividerStripe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(255, 255, 255, 0.05) 8px, rgba(255, 255, 255, 0.05) 16px);
+  pointer-events: none;
+}
+
+.tileCellWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75%;
+}
+
+.archBtn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.archBtnActive {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(247, 147, 26, 0.35);
+}
+.archBtnActive:hover {
+  background: rgba(247, 147, 26, 0.12);
+  border-color: var(--color-gold, #f7931a);
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(247, 147, 26, 0.2);
+}
+
+.potentialBadge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--color-gold, #f7931a);
+  animation: pulseQuestion 1.2s infinite alternate;
+}
+
+.futureBadge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Safe & Trap states */
+.safeArchedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 100%;
+}
+
+.safeBadgeRing {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.12);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.chickenCharacter {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+}
+
+.trapCoinContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.trapCoin {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff4757 30%, #b31020 90%);
+  border: 2px solid #ff4757;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.5), inset 0 2px 4px rgba(255,255,255,0.3);
+}
+.trapCoin span {
+  font-size: 1.4rem;
+}
+
+.revealedTrapIcon {
+  font-size: 1.4rem;
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.sewerFloorSection {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepIndicatorLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.roadColumnActive .stepIndicatorLabel {
+  color: var(--color-gold, #f7931a);
+}
+
+/* Finish segment */
+.finishSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 310px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(0, 255, 136, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1.5px solid rgba(0, 255, 136, 0.1);
+  position: relative;
+}
+
+.finishArch {
+  width: 60px;
+  height: 100px;
+  border-radius: 30px 30px 0 0;
+  border: 3px solid rgba(0, 255, 136, 0.4);
+  background: radial-gradient(ellipse at bottom, #0d2216 0%, #050a07 80%);
+  position: relative;
+  box-shadow: inset 0 0 25px rgba(0, 255, 136, 0.25), 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Lower metadata layout */
+.boardLowerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* History pills list */
+.historySection {
+  background: rgba(10, 14, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.historyTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.historyPills {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.historyPill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+.pillWin {
+  background: rgba(0, 255, 136, 0.08);
+  border-color: rgba(0, 255, 136, 0.2);
+  color: #00ff88;
+}
+
+.pillLoss {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 550px) {
+  .roadScrollWrapper {
+    padding: 1.2rem 0.5rem;
+    min-height: 330px;
+    border-radius: 16px;
+  }
+  .roadColumn {
+    width: 90px;
+    height: 250px;
+    border-radius: 12px;
+    padding: 0.8rem 0.4rem;
+  }
+  .startSegment, .finishSegment {
+    width: 90px;
+    height: 250px;
+    border-radius: 12px;
+  }
+  .startArchDoor, .finishArch {
+    width: 48px;
+    height: 80px;
+  }
+  .chickStandby {
+    font-size: 1.8rem;
+  }
+  .chickenCharacter {
+    font-size: 1.4rem;
+  }
+  .safeBadgeRing {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.35rem;
+  }
+  .stepIndicatorLabel {
+    font-size: 0.52rem;
+  }
+  .controlsCard {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+  .unifiedInputArea {
+    padding: 0.5rem 0.75rem;
+  }
+  .monospaceTextField {
+    font-size: 1rem;
+  }
+  .dashGoBtnPrimaryBlue, .stepManualBtn, .dashCashoutBtn {
+    height: 44px;
+    font-size: 0.85rem;
+  }
+}

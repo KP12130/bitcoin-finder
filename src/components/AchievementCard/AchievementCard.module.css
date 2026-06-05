@@ -1,0 +1,106 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: default;
+}
+
+/* ── Unlocked state ── */
+.unlocked {
+  border-color: rgba(247, 147, 26, 0.35);
+  box-shadow: var(--glow-gold);
+}
+
+.unlocked:hover {
+  border-color: rgba(247, 147, 26, 0.55);
+  box-shadow: 0 0 30px rgba(247, 147, 26, 0.4);
+}
+
+/* ── Locked state ── */
+.locked {
+  opacity: 0.5;
+  filter: grayscale(0.85);
+}
+
+.locked:hover {
+  opacity: 0.65;
+}
+
+/* ── Icon ── */
+.iconWrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 22px;
+}
+
+.icon {
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lockOverlay {
+  color: var(--color-text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* ── Text ── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  line-height: 1.4;
+}
+
+/* ── Decorative glow bar (unlocked only) ── */
+.glowBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  opacity: 0.6;
+}

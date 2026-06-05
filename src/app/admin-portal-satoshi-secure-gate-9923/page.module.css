@@ -1,0 +1,388 @@
+.container {
+  min-height: 100vh;
+  padding: 6rem 2rem 3rem;
+  background: radial-gradient(circle at 50% 0%, rgba(13, 27, 42, 0.9) 0%, rgba(15, 23, 42, 0.98) 100%);
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.headerInfo h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem;
+  background: linear-gradient(135deg, #00ff88, #8247e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.headerInfo p {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Stats Cards */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.statCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.statCard_deposits::after { background: #00ff88; }
+.statCard_withdrawals::after { background: #ff4757; }
+.statCard_profits::after { background: #f7931a; }
+.statCard_players::after { background: #8247e5; }
+
+.statCard:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.statIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.statIcon_deposits { background: rgba(0, 255, 136, 0.1); color: #00ff88; }
+.statIcon_withdrawals { background: rgba(255, 71, 87, 0.1); color: #ff4757; }
+.statIcon_profits { background: rgba(247, 147, 26, 0.1); color: #f7931a; }
+.statIcon_players { background: rgba(130, 71, 229, 0.1); color: #8247e5; }
+
+.statLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.25rem;
+}
+
+.statVal {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  margin: 0;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding-bottom: 0.8rem;
+}
+
+.tab {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: #00ff88;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+
+.tab:hover:not(.tabActive) {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+}
+
+/* Panels */
+.panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.8rem;
+  backdrop-filter: blur(20px);
+}
+
+.panelTitle {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0 0 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+}
+
+/* Tables */
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.th {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  vertical-align: middle;
+}
+
+.tr:hover {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-weight: 800;
+  font-size: 0.65rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-family: 'Orbitron', monospace;
+}
+
+.badge_pending { background: rgba(247, 147, 26, 0.12); color: #f7931a; border: 1px solid rgba(247, 147, 26, 0.25); }
+.badge_completed { background: rgba(0, 255, 136, 0.12); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.25); }
+.badge_failed { background: rgba(255, 71, 87, 0.12); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.25); }
+
+/* Buttons */
+.btn {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn_approve { background: rgba(0, 255, 136, 0.1); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.3); }
+.btn_approve:hover { background: #00ff88; color: #0f172a; box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
+
+.btn_reject { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); }
+.btn_reject:hover { background: #ff4757; color: #fff; box-shadow: 0 0 10px rgba(255, 71, 87, 0.3); }
+
+/* Dialog Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 30, 0.75);
+  backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.dialog {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  width: min(460px, 100%);
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.dialog h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0 0 0.8rem;
+  color: #fff;
+}
+
+.dialogText {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  outline: none;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.input:focus {
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+}
+
+.dialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Empty Alert */
+.empty {
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 0.9rem;
+}
+
+/* Unauthorized/Lock Panel */
+.lockBox {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  width: min(440px, 100%);
+  margin: 4rem auto;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.72rem;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.lockIcon {
+  font-size: 3rem;
+  color: #ff4757;
+  margin-bottom: 1.2rem;
+}
+
+.lockBox h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.lockBox p {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  margin-bottom: 1.6rem;
+  line-height: 1.4;
+}
+
+/* Provably Fair Calculator Grid */
+.auditGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.auditOutput {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+
+.auditLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #00ff88;
+  margin-bottom: 0.2rem;
+}
+
+.auditVal {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #f8fafc;
+  word-break: break-all;
+  margin-bottom: 1rem;
+}

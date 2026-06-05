@@ -1,0 +1,579 @@
+.page {
+  min-height: 100vh;
+  padding: 90px 0 3rem;
+  background: var(--color-bg);
+  position: relative;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ========================================
+   LEFT COLUMN — Controls Panel
+   ======================================== */
+.controlsPanel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 100px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 119, 255, 0.2);
+}
+
+.subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+  margin: 0.25rem 0 0;
+}
+
+/* Control Group */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+/* Inputs */
+.inputRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.input:focus {
+  outline: none;
+  border-color: #f7931a;
+}
+
+.quickBetGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.quickBetBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.45rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quickBetBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.currentBetBox {
+  background: rgba(247, 147, 26, 0.08);
+  border: 1px solid rgba(247, 147, 26, 0.25);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.betLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.betVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #f7931a;
+}
+
+.error {
+  color: #ff4757;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 71, 87, 0.07);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  border-radius: 8px;
+}
+
+/* Action Buttons */
+.actionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.betBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1rem;
+  background: linear-gradient(135deg, #0077ff, #0033aa);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 119, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.betBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Playing Action Buttons */
+.playActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.playActionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #fff;
+}
+
+.btnHit {
+  background: linear-gradient(135deg, rgba(0, 119, 255, 0.15) 0%, rgba(0, 119, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 119, 255, 0.3);
+}
+.btnHit:hover {
+  background: rgba(0, 119, 255, 0.22);
+  border-color: #0077ff;
+  box-shadow: 0 0 12px rgba(0, 119, 255, 0.2);
+}
+
+.btnStand {
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.15) 0%, rgba(247, 147, 26, 0.05) 100%);
+  border: 1px solid rgba(247, 147, 26, 0.3);
+}
+.btnStand:hover {
+  background: rgba(247, 147, 26, 0.22);
+  border-color: #f7931a;
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.2);
+}
+
+.btnDouble {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.15) 0%, rgba(108, 92, 231, 0.05) 100%);
+  border: 1px solid rgba(108, 92, 231, 0.3);
+}
+.btnDouble:hover:not(:disabled) {
+  background: rgba(108, 92, 231, 0.22);
+  border-color: #6c5ce7;
+  box-shadow: 0 0 12px rgba(108, 92, 231, 0.2);
+}
+.btnDouble:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Stats Card */
+.statsCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 0.85rem;
+}
+
+.statsHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 0.5rem 0.25rem;
+  border-radius: 8px;
+}
+
+.statVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.statLabel {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+/* ========================================
+   RIGHT COLUMN — Felt Table
+   ======================================== */
+.tableColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableFelt {
+  position: relative;
+  background: var(--color-felt, rgba(0, 100, 50, 0.06));
+  border: 1.5px solid var(--color-felt-border, rgba(0, 255, 136, 0.12));
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 0 50px var(--color-felt-glow, rgba(0, 0, 0, 0.7));
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.feltContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.feltDivider {
+  height: 1px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
+}
+
+/* Hand Sections */
+.handSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.handHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.handTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.scoreBadge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+/* Cards Row */
+.cardsRow {
+  display: flex;
+  min-height: 145px;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyFeltSpot {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  font-style: italic;
+}
+
+.cardContainer {
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+/* Dealer Shoe visual */
+.dealerShoe {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 100px;
+  height: 145px;
+  perspective: 1000px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shoeDeckBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.shoeDeckBack:nth-child(1) { transform: translate(4px, 4px) rotate(2deg); }
+.shoeDeckBack:nth-child(2) { transform: translate(2px, 2px) rotate(1deg); }
+.shoeDeckBack:nth-child(3) { transform: translate(0, 0); }
+
+/* Standard Blackjack Card Styles */
+.card {
+  width: 100px;
+  height: 145px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #000;
+  user-select: none;
+}
+
+.cardRed {
+  color: #ff4757;
+}
+
+.cardBlack {
+  color: #2f3542;
+}
+
+.cardCornerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.cardCornerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1;
+  transform: rotate(180deg);
+}
+
+.cardVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.cardSuitSymbol {
+  font-size: 1rem;
+  margin-top: 1px;
+}
+
+.cardCenterSuit {
+  font-size: 3.2rem;
+  line-height: 1;
+  text-align: center;
+  align-self: center;
+  margin: -5px 0;
+}
+
+/* Hidden Dealer Card Back */
+.cardBack {
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px;
+}
+
+.cardBackPattern {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bitcoinLogo {
+  font-size: 2.5rem;
+  color: rgba(247, 147, 26, 0.25);
+  font-weight: bold;
+}
+
+/* ========================================
+   RESULTS OVERLAY
+   ======================================== */
+.resultBanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 17, 23, 0.88);
+  backdrop-filter: blur(6px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.resultCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 380px;
+  width: 100%;
+  gap: 0.6rem;
+}
+
+.resultText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.winCard .resultText {
+  color: #00ff88;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.pushCard .resultText {
+  color: #00d4ff;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.loseCard .resultText {
+  color: #ff4757;
+  text-shadow: 0 0 15px rgba(255, 71, 87, 0.2);
+}
+
+.resultPayout {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-bg);
+  color: var(--color-text-dim);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .controlsPanel {
+    position: static;
+  }
+  .tableColumn {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .tableFelt {
+    padding: 2rem 1rem;
+    min-height: 380px;
+  }
+  .card {
+    width: 60px;
+    height: 90px;
+    padding: 6px;
+  }
+  .cardVal {
+    font-size: 0.85rem;
+  }
+  .cardCenterSuit {
+    font-size: 1.7rem;
+  }
+}

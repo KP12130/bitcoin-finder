@@ -1,0 +1,152 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1rem;
+  color: var(--color-text-dim);
+}
+
+.slotsPage {
+  position: relative;
+  z-index: 1;
+}
+
+/* Game Layout */
+.gameLayout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Controls Panel */
+.controlsPanel {
+  position: sticky;
+  top: 90px;
+}
+
+/* Slots Grid Panel */
+.slotsPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px;
+}
+
+/* Bankrupt Banner */
+.bankruptBanner {
+  background: var(--color-red-dim);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bankruptBanner p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.bailoutBtn {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--color-gold), #e8850f);
+  color: #000;
+  border: 1px solid var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.bailoutBtn:hover {
+  box-shadow: var(--glow-gold);
+  transform: translateY(-1px);
+}
+
+/* Recent Section */
+.recentSection {
+  margin-top: 2rem;
+}
+
+.recentTitle {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: var(--color-text-dim);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Achievement Toast */
+.achievementToast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--glow-gold);
+  cursor: pointer;
+  z-index: 200;
+}
+
+.achievementIcon {
+  font-size: 2rem;
+}
+
+.achievementLabel {
+  font-size: 0.7rem;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+}
+
+.achievementName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-bright);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .gameLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .controlsPanel {
+    position: static;
+    order: 2;
+  }
+
+  .slotsPanel {
+    min-height: auto;
+    margin-top: 1rem;
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievementToast {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+}

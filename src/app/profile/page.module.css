@@ -1,0 +1,403 @@
+/* ==========================================
+   Profile Page
+   ========================================== */
+
+.page {
+  min-height: 100vh;
+  padding: 90px 0 3rem;
+  background: var(--color-bg);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 1rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+}
+
+.avatarBig {
+  font-size: 3.5rem;
+  width: 90px;
+  height: 90px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #f7931a;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.heroInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heroName {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.vipBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.heroBalance {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #00ff88;
+  font-weight: 700;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tab:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2); }
+.tabActive {
+  background: rgba(247,147,26,0.1);
+  border-color: #f7931a;
+  color: #f7931a;
+}
+
+/* Panel */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cardHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 0.75rem;
+}
+
+/* VIP Tiers */
+.vipTiers {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+
+.vipTierItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.65rem 0.3rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.vipTierActive {
+  transform: scale(1.05);
+}
+
+.vipTierEmoji  { font-size: 1.4rem; }
+.vipTierName   { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.5); }
+.vipTierPct    { font-size: 0.6rem; color: rgba(255,255,255,0.3); font-family: 'Orbitron', sans-serif; }
+
+/* Progress bar */
+.progressWrap  { display: flex; flex-direction: column; gap: 0.35rem; }
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+}
+.progressBar {
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(247,147,26,0.4);
+}
+.maxTier {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: #a020f0;
+  text-shadow: 0 0 12px rgba(160,32,240,0.5);
+}
+
+/* Rakeback */
+.rakebackInfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.rakebackStat {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(0,255,136,0.04);
+  border: 1px solid rgba(0,255,136,0.1);
+  border-radius: 10px;
+}
+
+.rakebackValue {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #00ff88;
+}
+
+.rakebackLabel {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 0.2rem;
+}
+
+.claimSuccess {
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.25);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  color: #00ff88;
+  font-weight: 700;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.claimBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,200,100,0.1));
+  border: 1px solid rgba(0,255,136,0.3);
+  border-radius: 12px;
+  color: #00ff88;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.claimBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.upgradeHint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+}
+
+/* Identity */
+.inputRow {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+}
+.input:focus { outline: none; border-color: #f7931a; }
+.input::placeholder { color: rgba(255,255,255,0.25); }
+
+.saveBtn {
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(135deg, #f7931a, #e07d0d);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Avatar Grid */
+.avatarGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.avatarOption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 0.4rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.avatarOption:hover { border-color: rgba(247,147,26,0.4); }
+.avatarSelected { transform: scale(1.06); }
+
+.avatarOptionEmoji { font-size: 2rem; line-height: 1; }
+.avatarOptionLabel { font-size: 0.62rem; color: rgba(255,255,255,0.4); text-align: center; }
+
+/* Stats */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.2rem 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.statIcon  { font-size: 1.4rem; }
+.statValue { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 800; color: #fff; }
+.statLabel { font-size: 0.65rem; color: rgba(255,255,255,0.35); }
+.statPos   { color: #00ff88 !important; }
+.statNeg   { color: #ff4757 !important; }
+
+/* Ledger */
+.empty {
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.85rem;
+}
+
+.ledgerList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ledgerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+}
+
+.ledgerIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ledger_deposit .ledgerIcon    { background: rgba(0,255,136,0.1); color: #00ff88; }
+.ledger_withdrawal .ledgerIcon { background: rgba(255,71,87,0.1);  color: #ff4757; }
+.ledger_rakeback .ledgerIcon   { background: rgba(247,147,26,0.1); color: #f7931a; }
+
+.ledgerInfo  { flex: 1; min-width: 0; }
+.ledgerLabel { font-size: 0.82rem; color: #fff; font-weight: 600; }
+.ledgerTxid  { font-family: 'Courier New', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.3); }
+.ledgerDate  { font-size: 0.65rem; color: rgba(255,255,255,0.3); }
+
+.ledgerAmount { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: 700; white-space: nowrap; }
+.amountPos { color: #00ff88; }
+.amountNeg { color: #ff4757; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { flex-direction: column; text-align: center; }
+  .heroInfo { align-items: center; }
+  .vipTiers { grid-template-columns: repeat(3, 1fr); }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .avatarGrid { grid-template-columns: repeat(4, 1fr); }
+  .rakebackInfo { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .avatarGrid { grid-template-columns: repeat(3, 1fr); }
+  .vipTiers { grid-template-columns: repeat(2, 1fr); }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .tabs { gap: 0.35rem; }
+  .tab { font-size: 0.6rem; padding: 0.5rem 0.8rem; }
+}

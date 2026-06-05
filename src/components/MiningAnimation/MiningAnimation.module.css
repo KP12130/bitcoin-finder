@@ -1,0 +1,468 @@
+/* ========================================
+   MiningAnimation — THE STAR COMPONENT
+   ======================================== */
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ---- Target Block Header ---- */
+.targetBlock {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.targetBlock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 255, 0.04) 0%,
+    transparent 50%,
+    rgba(247, 147, 26, 0.04) 100%
+  );
+  pointer-events: none;
+}
+
+.targetLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-dim);
+  margin-bottom: 0.35rem;
+}
+
+.targetValue {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-dim);
+  letter-spacing: 0.08em;
+}
+
+.targetRevealed {
+  color: var(--color-gold);
+  text-shadow: 0 0 24px rgba(247, 147, 26, 0.5), 0 0 48px rgba(247, 147, 26, 0.2);
+}
+
+/* ---- Progress Section ---- */
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-blue);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progressIcon {
+  animation: spin 1.5s linear infinite;
+  color: var(--color-gold);
+  font-size: 0.85rem;
+}
+
+.progressIconDone {
+  animation: none;
+  color: var(--color-green);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skipButton {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-dim);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.skipButton:hover {
+  color: var(--color-gold);
+  border-color: rgba(247, 147, 26, 0.3);
+  background: rgba(247, 147, 26, 0.06);
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-blue), var(--color-gold));
+  position: relative;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressBarFill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  bottom: -2px;
+  width: 12px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(247, 147, 26, 0.6), 0 0 20px rgba(247, 147, 26, 0.3);
+}
+
+.progressBarComplete {
+  background: linear-gradient(90deg, var(--color-green), var(--color-gold));
+}
+
+.progressBarComplete::after {
+  background: var(--color-green);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+/* ---- Currently Checking ---- */
+.currentCheck {
+  text-align: center;
+  padding: 1rem;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.currentCheck::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), transparent 40%, transparent 60%, rgba(247, 147, 26, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.currentCheckLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-dim);
+  margin-bottom: 0.25rem;
+}
+
+.currentCheckNumber {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-blue);
+  text-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+  letter-spacing: 0.06em;
+}
+
+.currentCheckMatch {
+  color: var(--color-gold);
+  text-shadow: 0 0 20px rgba(247, 147, 26, 0.6), 0 0 40px rgba(247, 147, 26, 0.3);
+}
+
+/* ---- Summary Counter ---- */
+.summaryCounter {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+  text-align: center;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.summaryCount {
+  color: var(--color-blue);
+  font-weight: 700;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.75rem;
+}
+
+/* ---- Number Grid ---- */
+.gridWrapper {
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: var(--radius);
+  padding: 2px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+/* ---- Individual Number Cell ---- */
+.cell {
+  width: 64px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--color-border);
+  background: rgba(17, 24, 39, 0.6);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Unrevealed cell */
+.cellUnrevealed {
+  color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.04);
+  background: rgba(17, 24, 39, 0.35);
+}
+
+/* Revealed - no match (dim red tint) */
+.cellMiss {
+  color: var(--color-text-dim);
+  border-color: rgba(255, 71, 87, 0.12);
+  background: rgba(255, 71, 87, 0.04);
+}
+
+.cellMiss::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.06), transparent);
+  pointer-events: none;
+}
+
+/* Currently scrambling cell */
+.cellScrambling {
+  color: var(--color-blue);
+  border-color: rgba(0, 212, 255, 0.3);
+  background: rgba(0, 212, 255, 0.08);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+}
+
+/* THE MATCH — Gold explosion */
+.cellMatch {
+  color: var(--color-gold);
+  border-color: rgba(247, 147, 26, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(247, 147, 26, 0.15),
+    rgba(247, 147, 26, 0.08)
+  );
+  box-shadow:
+    0 0 16px rgba(247, 147, 26, 0.4),
+    0 0 32px rgba(247, 147, 26, 0.2),
+    0 0 64px rgba(247, 147, 26, 0.1),
+    inset 0 0 16px rgba(247, 147, 26, 0.1);
+  z-index: 2;
+  font-size: 0.85rem;
+}
+
+.cellMatch::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--color-gold),
+    var(--color-gold-light),
+    var(--color-gold),
+    var(--color-gold-light)
+  );
+  background-size: 300% 300%;
+  animation: matchBorderShimmer 2s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes matchBorderShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Particle burst ring around matched cell */
+.cellMatch::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid rgba(247, 147, 26, 0.3);
+  border-radius: 14px;
+  animation: particleRing 1.5s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes particleRing {
+  0% {
+    inset: -2px;
+    opacity: 1;
+    border-width: 2px;
+  }
+  100% {
+    inset: -14px;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Inner number text for scramble */
+.cellText {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* ---- Idle / No Guesses State ---- */
+.emptyState {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--color-text-dim);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 0 12px rgba(247, 147, 26, 0.3));
+}
+
+.emptyText {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Completion Overlay Message ---- */
+.completeMessage {
+  text-align: center;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.completeWin {
+  background: rgba(247, 147, 26, 0.08);
+  border-color: rgba(247, 147, 26, 0.25);
+  color: var(--color-gold);
+  box-shadow: var(--glow-gold);
+}
+
+.completeLoss {
+  background: rgba(255, 71, 87, 0.08);
+  border-color: rgba(255, 71, 87, 0.2);
+  color: var(--color-red);
+}
+
+.completeIcon {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .targetValue {
+    font-size: 1.3rem;
+  }
+
+  .currentCheckNumber {
+    font-size: 1.5rem;
+  }
+
+  .cell {
+    width: 54px;
+    height: 36px;
+    font-size: 0.65rem;
+  }
+
+  .grid {
+    gap: 4px;
+    padding: 0.35rem;
+  }
+
+  .gridWrapper {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cell {
+    width: 46px;
+    height: 32px;
+    font-size: 0.6rem;
+  }
+}

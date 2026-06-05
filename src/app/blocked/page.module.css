@@ -1,0 +1,109 @@
+.container {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 50%, #0c1220 0%, #060810 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.card {
+  width: min(520px, 100%);
+  background: rgba(14, 20, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 71, 87, 0.15);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(255, 71, 87, 0.04);
+  text-align: center;
+  position: relative;
+}
+
+.iconWrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.globeIcon {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+}
+
+.lockIcon {
+  font-size: 2.2rem;
+  color: #ff4757;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  filter: drop-shadow(0 0 10px rgba(255, 71, 87, 0.4));
+  background: #0c1220;
+  padding: 0.3rem;
+  border-radius: 50%;
+  border: 2px solid #0c1220;
+}
+
+.title {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 0.4rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ff4757;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 71, 87, 0.25), transparent);
+  margin: 1.8rem 0;
+}
+
+.message {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 1.2rem;
+}
+
+.submessage {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.footer {
+  margin-top: 2.5rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 2.5rem 1.5rem;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,143 @@
+.tableWrapper {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-text-dim);
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row states */
+.row {
+  transition: var(--transition);
+}
+
+.row:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.playerRow td {
+  background: rgba(247, 147, 26, 0.06) !important;
+}
+
+.playerRow:hover td {
+  background: rgba(247, 147, 26, 0.1) !important;
+}
+
+.topThree td {
+  border-left: 2px solid transparent;
+}
+
+/* Rank cell */
+.rankCell {
+  width: 60px;
+  text-align: center;
+}
+
+.rankGold {
+  color: #ffd700;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
+}
+
+.rankSilver {
+  color: #c0c0c0;
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 4px rgba(192, 192, 192, 0.3));
+}
+
+.rankBronze {
+  color: #cd7f32;
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 4px rgba(205, 127, 50, 0.3));
+}
+
+.rankNum {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+}
+
+/* Name cell */
+.nameCell {
+  font-weight: 600;
+  color: var(--color-text-bright);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.youBadge {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-gold), #e8850f);
+  color: #000;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* Profit cell */
+.profitCell {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.positive {
+  color: var(--color-green);
+}
+
+.negative {
+  color: var(--color-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table thead th,
+  .table tbody td {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .rankGold, .rankSilver, .rankBronze {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .table thead th:nth-child(4),
+  .table tbody td:nth-child(4),
+  .table thead th:nth-child(5),
+  .table tbody td:nth-child(5) {
+    display: none;
+  }
+}

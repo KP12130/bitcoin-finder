@@ -1,0 +1,638 @@
+/* ==========================================
+   Scratch Cards Page Styles
+   ========================================== */
+
+.page {
+  min-height: 100vh;
+  padding: 90px 0 3rem;
+  background: var(--color-bg);
+}
+
+/* ---- Two-column layout ---- */
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+
+/* ---- Left Controls Column ---- */
+.controlsPanel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 100px;
+}
+
+.title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---- Control Groups ---- */
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+/* ---- Bet input ---- */
+.inputRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+.input:focus { outline: none; border-color: #ffd700; }
+.input:disabled { opacity: 0.4; }
+
+/* ---- Quick-bet grid ---- */
+.quickBetGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+}
+
+.quickBetBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0.45rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quickBetBtn:hover {
+  background: rgba(255, 215, 0, 0.08);
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.25);
+}
+.quickBetBtn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ---- Primary action buttons ---- */
+.buyBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #ffd700, #e6b800);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.2rem;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+  transition: box-shadow 0.2s;
+}
+.buyBtn:hover { box-shadow: 0 4px 30px rgba(255, 215, 0, 0.35); }
+.buyBtn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+
+.newCardBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s;
+}
+.newCardBtn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.revealAllBtn {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #6c5ce7, #5a4dd6);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(108, 92, 231, 0.2);
+  transition: box-shadow 0.2s;
+}
+.revealAllBtn:hover { box-shadow: 0 4px 24px rgba(108, 92, 231, 0.4); }
+
+/* ---- Error ---- */
+.error {
+  color: #ff4757;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 71, 87, 0.07);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+  border-radius: 8px;
+}
+
+/* ---- Payout Table ---- */
+.payoutTable {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.payoutHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.payoutRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.78rem;
+}
+.payoutRow:last-child { border-bottom: none; }
+
+.payoutSymbol { font-size: 1rem; margin-right: 0.35rem; }
+.payoutName { color: rgba(255, 255, 255, 0.55); font-size: 0.72rem; }
+.payoutMult {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+/* ---- Stats Card ---- */
+.statsCard {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.statsHeader {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.statVal {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.statLabel {
+  font-size: 0.57rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================
+   Right Column — Scratch Card Area
+   ========================================== */
+.cardColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ---- Premium scratch card wrapper ---- */
+.scratchCardWrapper {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(145deg, #1a1600 0%, #2d2400 40%, #1a1200 100%);
+  border: 2px solid transparent;
+  border-radius: 22px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255, 215, 0, 0.15),
+    0 0 40px rgba(255, 215, 0, 0.06),
+    0 20px 60px rgba(0, 0, 0, 0.6);
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+/* Golden outer border via pseudo-element */
+.scratchCardWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffd700, #b8860b, #ffd700, #8b6914, #ffd700);
+  background-size: 200% 200%;
+  animation: goldShift 4s linear infinite;
+  z-index: -1;
+}
+
+@keyframes goldShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Card header ribbon */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  text-transform: uppercase;
+}
+
+.cardBetBadge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #000;
+  background: linear-gradient(135deg, #ffd700, #e6b800);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+}
+
+.cardSubtitle {
+  font-size: 0.65rem;
+  color: rgba(255, 215, 0, 0.5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+/* Divider line in card */
+.cardDivider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  margin: 0.75rem 0;
+}
+
+/* ---- 3×3 Panel Grid ---- */
+.panelGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  width: 100%;
+}
+
+/* ---- Individual Panel (3D flip container) ---- */
+.panelContainer {
+  perspective: 800px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.panelContainer.disabled {
+  cursor: default;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0s; /* Managed by Framer Motion */
+}
+
+/* Front & Back share base */
+.panelFront,
+.panelBack {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* ---- Unscratched silver face ---- */
+.panelFront {
+  background: linear-gradient(
+    145deg,
+    #d8d8d8 0%,
+    #c0c0c0 20%,
+    #e8e8e8 35%,
+    #b0b0b0 50%,
+    #d0d0d0 65%,
+    #c8c8c8 80%,
+    #e0e0e0 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.6),
+    inset 0 -1px 2px rgba(0,0,0,0.2),
+    0 3px 8px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+/* Shimmer overlay on unscratched panels */
+.panelFront::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmerPanel 2.2s ease-in-out infinite;
+  border-radius: inherit;
+}
+
+@keyframes shimmerPanel {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scratch texture lines */
+.panelFront::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.04) 3px,
+    rgba(0,0,0,0.04) 4px
+  );
+}
+
+/* Scratch icon hint */
+.scratchHint {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  z-index: 1;
+  user-select: none;
+  animation: hintPulse 3s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.08); }
+}
+
+/* ---- Revealed back face ---- */
+.panelBack {
+  transform: rotateY(180deg);
+  background: rgba(15, 15, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 2.2rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Win glow on matching panels */
+.panelBack.matched {
+  background: rgba(0, 255, 136, 0.07);
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow:
+    inset 0 0 20px rgba(0, 255, 136, 0.1),
+    0 0 20px rgba(0, 255, 136, 0.35);
+  animation: matchPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes matchPulse {
+  0%, 100% { box-shadow: inset 0 0 20px rgba(0,255,136,0.1), 0 0 16px rgba(0,255,136,0.3); }
+  50%       { box-shadow: inset 0 0 28px rgba(0,255,136,0.2), 0 0 30px rgba(0,255,136,0.55); }
+}
+
+/* Symbol emoji label */
+.panelEmoji {
+  font-size: 2.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.15));
+  user-select: none;
+}
+
+.panelEmoji.matchedEmoji {
+  filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.7));
+  animation: emojiGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes emojiGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(0,255,136,0.5)); }
+  50%       { filter: drop-shadow(0 0 20px rgba(0,255,136,0.9)); }
+}
+
+/* ---- Card footer instruction ---- */
+.cardFooter {
+  margin-top: 0.75rem;
+  font-size: 0.65rem;
+  color: rgba(255, 215, 0, 0.4);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ==========================================
+   Result Banner
+   ========================================== */
+.resultBanner {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 18px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.resultBanner.winBanner {
+  background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,200,100,0.04));
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 40px rgba(0, 255, 136, 0.12);
+}
+
+.resultBanner.lossBanner {
+  background: rgba(255, 71, 87, 0.05);
+  border: 1px solid rgba(255, 71, 87, 0.2);
+}
+
+.resultTitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.resultTitle.winTitle { color: #00ff88; text-shadow: 0 0 20px rgba(0,255,136,0.5); }
+.resultTitle.lossTitle { color: #ff4757; }
+
+.resultDetail {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.resultPayout {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffd700;
+}
+
+.resultMultiplier {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 215, 0, 0.6);
+}
+
+/* ---- Idle placeholder ---- */
+.idlePlaceholder {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 22px;
+  border: 2px dashed rgba(255, 215, 0, 0.15);
+  padding: 4rem 2rem;
+  text-align: center;
+  color: rgba(255, 215, 0, 0.3);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.idleIcon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 16px rgba(255,215,0,0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controlsPanel {
+    position: static;
+  }
+
+  .scratchCardWrapper {
+    max-width: 460px;
+  }
+
+  .idlePlaceholder {
+    max-width: 460px;
+  }
+
+  .resultBanner {
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 500px) {
+  .scratchCardWrapper {
+    padding: 1rem;
+  }
+
+  .panelGrid {
+    gap: 0.45rem;
+  }
+
+  .panelEmoji {
+    font-size: 1.6rem;
+  }
+}

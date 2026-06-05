@@ -1,0 +1,412 @@
+.chatDrawer {
+  position: fixed;
+  top: 70px; /* Aligns underneath the main header navbar */
+  bottom: 0;
+  right: 0;
+  width: 360px;
+  z-index: 999;
+  display: flex;
+}
+
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1;
+  display: none;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(18, 22, 35, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chatIcon {
+  color: var(--color-blue, #00d4ff);
+  font-size: 1.35rem;
+}
+
+.headerText h3 {
+  margin: 0 0 2px 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.onlineBadge {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+  display: inline-block;
+  animation: dotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Message List */
+.messageList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.messageList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.messageList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.emptyChat {
+  margin: auto;
+  text-align: center;
+  padding: 2rem;
+}
+
+.emptyChat p {
+  font-family: 'Orbitron', sans-serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  margin: 0 0 6px 0;
+}
+
+.emptyChat span {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.messageItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  animation: messageFadeIn 0.25s ease-out;
+}
+
+@keyframes messageFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msgHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+}
+
+.avatarEmoji {
+  font-size: 0.95rem;
+}
+
+.username {
+  font-weight: 700;
+  color: var(--color-text-bright, #ffffff);
+}
+
+.botMessage .username {
+  color: #00ff88;
+}
+
+.botBadge {
+  background: rgba(0, 255, 136, 0.12);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.botBadgeIcon {
+  font-size: 0.5rem;
+}
+
+.time {
+  color: rgba(255, 255, 255, 0.3);
+  margin-left: auto;
+}
+
+.msgBody p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Bet shared slips */
+.betCard {
+  margin-top: 0.6rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.betCard:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.betCardWin {
+  border-left: 3px solid var(--color-green, #00ff88);
+}
+
+.betCardLoss {
+  border-left: 3px solid var(--color-red, #ff4757);
+}
+
+.betCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding-bottom: 0.3rem;
+}
+
+.betCardGame {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.betCardResult {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+}
+
+.betCardBody {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.betStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.6rem;
+  flex: 1;
+}
+
+.betStat span {
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+}
+
+.betStat strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* Colors styling */
+.textWin {
+  color: var(--color-green, #00ff88) !important;
+}
+
+.textLoss {
+  color: var(--color-red, #ff4757) !important;
+}
+
+/* Footer & Inputs */
+.footer {
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(13, 16, 26, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.emojiList {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.emojiList::-webkit-scrollbar {
+  height: 2px;
+}
+
+.emojiList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.emojiShortcutBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.emojiShortcutBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  padding-right: 6px;
+  transition: all 0.2s ease;
+}
+
+.inputWrap:focus-within {
+  border-color: var(--color-blue, #00d4ff);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.15);
+}
+
+.chatInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.8rem;
+  padding: 0.65rem 0.85rem;
+}
+
+.chatInput::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.sendBtn {
+  background: var(--color-blue, #00d4ff);
+  border: none;
+  outline: none;
+  color: #000000;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.72rem;
+  transition: all 0.2s ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: scale(1.05);
+}
+
+.sendBtn:disabled {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.25);
+  cursor: not-allowed;
+}
+
+.charCounter {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.2);
+  align-self: flex-end;
+  margin-top: -4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chatDrawer {
+    width: 100%;
+    top: 70px;
+  }
+  
+  .mobileBackdrop {
+    display: block;
+  }
+  
+  .sidebar {
+    width: 320px;
+  }
+}
