@@ -1,0 +1,228 @@
+/* AutoPanel.module.css */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.gameSlot {
+  padding: 0.75rem;
+  background: rgba(247, 147, 26, 0.04);
+  border: 1px solid rgba(247, 147, 26, 0.12);
+  border-radius: 10px;
+}
+
+/* Field label */
+.fieldLabel {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.fieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Rounds row */
+.roundsRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Number input */
+.numberInput {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.numberInput:focus { outline: none; border-color: #f7931a; }
+.numberInput:disabled { opacity: 0.38; cursor: not-allowed; }
+
+/* Infinite toggle */
+.infiniteToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+.infiniteToggle input { display: none; }
+.infiniteToggle:hover { border-color: rgba(247, 147, 26, 0.3); color: #fff; }
+.infiniteOn {
+  border-color: rgba(247, 147, 26, 0.45) !important;
+  color: #f7931a !important;
+  background: rgba(247, 147, 26, 0.06);
+}
+
+/* Stop conditions grid */
+.stopGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+}
+
+.stopBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Select */
+.selectInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  color: #fff;
+  font-size: 0.8rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='rgba(255,255,255,0.35)' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1.2em;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+.selectInput:focus { outline: none; border-color: #f7931a; }
+.selectInput:disabled { opacity: 0.38; cursor: not-allowed; }
+.selectInput option { background: #1a1a2e; color: #fff; }
+
+/* Percent inputs */
+.pctRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+.pctInput {
+  width: 80px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.4rem 0.65rem;
+  color: #fff;
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+.pctInput:focus { outline: none; border-color: #f7931a; }
+.pctLabel {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Progress card */
+.progressCard {
+  background: rgba(0, 255, 136, 0.04);
+  border: 1px solid rgba(0, 255, 136, 0.12);
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: progressPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); }
+  50% { box-shadow: 0 0 14px rgba(0,255,136,0.08); }
+}
+
+.progressRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.progressRow strong {
+  font-size: 0.82rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+}
+
+.barTrack {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.1rem;
+}
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, #f7931a, #ffd700);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* Start / Stop buttons */
+.startBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #00ff88, #00c86b);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.15);
+  margin-top: 0.1rem;
+}
+.startBtn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(0,255,136,0.28); }
+.startBtn:active { transform: translateY(0); }
+
+.stopBtn {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #ff4757, #cc2233);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-top: 0.1rem;
+  animation: stopPulse 1.6s ease-in-out infinite;
+}
+.stopBtn:hover { transform: translateY(-1px); }
+
+@keyframes stopPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,71,87,0); }
+  50% { box-shadow: 0 0 20px rgba(255,71,87,0.4); }
+}
